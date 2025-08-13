@@ -4,315 +4,81 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Assemble Sound</title>
+  <link rel="stylesheet" href="css/shared.css">
   <link rel="icon" href="images/icon.png" type="image/png">
-    <link rel="stylesheet" href="css/fade.css" />
-  <style>
-    * {
-      font-variant-ligatures: none;
-      -webkit-font-variant-ligatures: none;
-      font-feature-settings: "liga" 0, "clig" 0;
-    }
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      overflow-y: auto;
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-      background: transparent;
-      color: #000;
-      padding-bottom: 40px;
-    }
-
-    /* styling for the video */
-    .video-container {
-      height: 80vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-      position: relative;
-      width: 100%;
-    }
-
-    video {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      pointer-events: none;
-      display: block;
-    }
-
-    /* styling for the project title */
-    .title {
-      text-align: left;
-      font-size: 90px;
-      font-family: 'Akzidenz Grotesk Light Bold', sans-serif;
-      font-weight: bold;
-      margin: 20px 75px 50px;
-      color: black;
-    }
-
-    /* styling for the project description */
-    .line-and-text {
-      margin: 0 75px;
-      font-family: 'Akzidenz Grotesk Roman', sans-serif;
-      font-size: 18px;
-      color: black;
-      line-height: 1.6;
-    }
-
-    .line-and-text p {
-      margin-bottom: 18px;
-    }
-
-    /* styling for exit button */
-    .back-x {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      width: 40px;
-      height: 40px;
-      font-size: 24px;
-      font-weight: bold;
-      text-decoration: none;
-      color: black;
-      z-index: 1000;
-      background-color: white;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: background 0.3s;
-      user-select: none;
-    }
-
-    .back-x:hover {
-      background-color: #eee;
-    }
-
-    /* styling for the row of images */
-    .image-row {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-      gap: 30px;
-      margin: 40px 75px;
-    }
-
-    .image-row img {
-      width: 100%;
-      height: auto;
-      border-radius: 5px;
-      display: block;
-      transition: transform 0.3s ease;
-    }
-
-    .gallery-link:hover img {
-      transform: scale(1.02);
-      cursor: zoom-in;
-    }
-
-    /* styling for the grid of information */ 
-    .info-grid {
-      margin: 0 75px 50px;
-    }
-
-    .info-grid dl {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 20px 40px;
-      font-family: 'Akzidenz Grotesk Roman', sans-serif;
-      font-size: 18px;
-      color: black;
-    }
-
-    .info-grid dt {
-      font-family: 'Akzidenz Grotesk Light Bold', sans-serif;
-      font-size: 18px;
-    }
-
-    .info-grid dd {
-      margin: 0;
-      font-weight: light;
-    }
-
-    /* styling for the row of images when clicked on */
-    .lightbox {
-      display: none;
-      position: fixed;
-      z-index: 2000;
-      left: 0; top: 0;
-      width: 100%; height: 100%;
-      background-color: rgba(0,0,0,0.9);
-      justify-content: center;
-      align-items: center;
-    }
-
-    .lightbox-content {
-      max-width: 90%;
-      max-height: 80%;
-      border-radius: 10px;
-    }
-
-    /* font styling */ 
-    @font-face {
-      font-family: 'Akzidenz Grotesk Italic';
-      src: url('fonts/Akzidenz Grotesk Italic.woff2') format('woff2');
-      font-style: italic;
-    }
-    @font-face {
-      font-family: 'Akzidenz Grotesk Light Bold Italic';
-      src: url('fonts/Akzidenz Grotesk Light Bold Italic.woff2') format('woff2');
-      font-style: italic;
-      font-weight: bold;
-    }
-    @font-face {
-      font-family: 'Akzidenz Grotesk Light Bold';
-      src: url('fonts/Akzidenz Grotesk Light Bold.woff2') format('woff2');
-      font-weight: bold;
-    }
-    @font-face {
-      font-family: 'Akzidenz Grotesk Light Italic';
-      src: url('fonts/Akzidenz Grotesk Light Italic.woff2') format('woff2');
-      font-style: italic;
-    }
-    @font-face {
-      font-family: 'Akzidenz Grotesk Light';
-      src: url('fonts/Akzidenz Grotesk Light.woff2') format('woff2');
-    }
-    @font-face {
-      font-family: 'Akzidenz Grotesk Roman';
-      src: url('fonts/Akzidenz Grotesk Roman.woff2') format('woff2');
-      font-weight: bold;
-    }
-    
-    /* Responsive styles */
-    @media (max-width: 768px) {
-      .title {
-        font-size: 48px;
-        margin: 20px 30px 40px;
-      }
-
-      .line-and-text {
-        margin: 0 30px 40px;
-        font-size: 16px;
-      }
-
-      .image-row {
-        grid-template-columns: 1fr;
-        gap: 20px;
-        margin: 0 30px 40px;
-      }
-
-      .image-row img {
-        max-width: 100%;
-      }
-
-      .back-x {
-        top: 15px;
-        right: 15px;
-        width: 36px;
-        height: 36px;
-        font-size: 28px;
-      }
-
-      .video-container {
-        height: 60vh;
-      }
-
-      .info-grid {
-        margin: 0 30px 40px;
-      }
-
-      .info-grid dl {
-        grid-template-columns: 1fr;
-        gap: 10px 0;
-        font-size: 16px;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="css/fade.css" />
 </head>
 
 <body>
-  <a href="projects.html" class="back-x">✕</a>
+	<a href="projects.html" class="back-x">&#10005</a>
 
-  <div class="video-container">
-    <video src="AssembleSound.mp4" loop autoplay muted playsinline></video>
-  </div>
+	<div class="video-container">
+		<video src="videos/AssembleSound.mp4" loop autoplay muted playsinline></video>
+	</div>
 
-  <div class="title">Assemble Sound</div>
+	<div class="title">Assemble Sound</div>
 
-  <div class="info-grid">
-    <dl>
-      <div>
-        <dt>Completion Date</dt>
-        <dd>Unknown</dd>
-      </div>
-      <div>
-        <dt>Site Address</dt>
-        <dd>2300 17th St, Detroit, MI 48216</dd>
-      </div>
-      <div>
-        <dt>Data Type</dt>
-        <dd>LiDAR</dd>
-      </div>
-      <div>
-        <dt>Scan Type</dt>
-        <dd>Interior</dd>
-      </div>
-    </dl>
-  </div>
+	<div class="info-grid">
+		<dl>
+			<div>
+				<dt>Completion Date</dt>
+				<dd>Unknown</dd>
+			</div>
+			<div>
+				<dt>Site Address</dt>
+				<dd>2300 17th St, Detroit, MI 48216</dd>
+			</div>
+			<div>
+				<dt>Data Type</dt>
+				<dd>LiDAR</dd>
+			</div>
+			<div>
+				<dt>Scan Type</dt>
+				<dd>Interior</dd>
+			</div>
+		</dl>
+	</div>
 
-  <div class="line-and-text">
-    <p>
-      EIPC recently undertook a unique scanning project at the historic Grace to Grace Church, now known as the Assemble Sound space, in Detroit. This detailed documentation was specifically carried out to support the work of fellow Kevin Moultrie Daye, providing him with a comprehensive digital record of a space rich in history and architectural character. The initiative aimed to capture the essence of this building, preserving its intricate details and atmosphere through advanced digital means.
-    </p>
-    <p>
-      The former church building, with its transition into a creative hub like Assemble Sound, presented a fascinating subject for documentation. Such older structures often come with their own set of challenges for precise 3D scanning. These can include varied textures from aged wood and masonry, complex architectural details like stained glass windows that act as transparent barriers, and potentially uneven surfaces that require careful capture. EIPC utilized sophisticated 3D scanning technology to meticulously map the building's interior and exterior, ensuring that every unique feature, from ornate carvings to the overall volumetric feel of the space, was accurately preserved in the digital model.
-    </p>
-    <p>
-      For Kevin Moultrie Daye, this digital model provides an invaluable resource for his creative or research endeavors, allowing for detailed study and virtual exploration of the space without physical limitations. It serves as a comprehensive visual archive, capturing the building's current state and historical layers. This project powerfully demonstrates how advanced digital capture techniques can breathe new life into historical documentation, supporting contemporary creative work and ensuring that culturally significant spaces are preserved and accessible for a wide range of purposes, bridging the past with innovative future applications.
-    </p>
-  </div>
+	<div class="line-and-text">
+		<p>
+			EIPC recently undertook a unique scanning project at the historic Grace to Grace Church, now known as the Assemble Sound space, in Detroit. This detailed documentation was specifically carried out to support the work of fellow Kevin Moultrie Daye, providing him with a comprehensive digital record of a space rich in history and architectural character. The initiative aimed to capture the essence of this building, preserving its intricate details and atmosphere through advanced digital means.
+		</p>
+		<p>
+			The former church building, with its transition into a creative hub like Assemble Sound, presented a fascinating subject for documentation. Such older structures often come with their own set of challenges for precise 3D scanning. These can include varied textures from aged wood and masonry, complex architectural details like stained glass windows that act as transparent barriers, and potentially uneven surfaces that require careful capture. EIPC utilized sophisticated 3D scanning technology to meticulously map the building's interior and exterior, ensuring that every unique feature, from ornate carvings to the overall volumetric feel of the space, was accurately preserved in the digital model.
+		</p>
+		<p>
+			For Kevin Moultrie Daye, this digital model provides an invaluable resource for his creative or research endeavors, allowing for detailed study and virtual exploration of the space without physical limitations. It serves as a comprehensive visual archive, capturing the building's current state and historical layers. This project powerfully demonstrates how advanced digital capture techniques can breathe new life into historical documentation, supporting contemporary creative work and ensuring that culturally significant spaces are preserved and accessible for a wide range of purposes, bridging the past with innovative future applications.
+		</p>
+	</div>
 
-  <div class="image-row">
-    <a href="images/grace1.png" class="gallery-link" target="_blank">
-      <img src="images/grace1.png" alt="Image 1" />
-    </a>
-    <a href="images/grace2.png" class="gallery-link" target="_blank">
-      <img src="images/grace2.png" alt="Image 2" />
-    </a>
-  </div>
+	<div class="image-row">
+		<a class="gallery-link">
+			<img src="images/AssembleSound_front.png" alt="Image 1" />
+		</a>
+		<a class="gallery-link">
+			<img src="images/AssembleSound_frontSection_1.png" alt="Image 2" />
+		</a>
+		<a class="gallery-link">
+			<img src="images/AssembleSound_section1.1.png" alt="Image 3" />
+		</a>
+		<a class="gallery-link">
+			<img src="images/AssembleSound_top.png" alt="Image 4" />
+		</a>
+		<a class="gallery-link">
+			<img src="images/AssembleSound_persp.png" alt="Image 5" />
+		</a>
+		<a class="gallery-link">
+			<img src="images/AssembleSound_perspective_2.png" alt="Image 6" />
+		</a>
+	</div>
 
-  <div id="lightbox" class="lightbox">
-    <span class="close">&times;</span>
-    <img class="lightbox-content" id="lightbox-img">
-    <span class="arrow left">&#10094;</span>
-    <span class="arrow right">&#10095;</span>
-  </div>
+	<div id="lightbox" class="lightbox">
+	<span class="arrow left">&#10094;</span>
+	<img class="lightbox-content" id="lightbox-img">
+	<span class="arrow right">&#10095;</span>
+	</div>
 
-  <script>
-    const links = document.querySelectorAll('.gallery-link img');
-    const lightbox = document.getElementById('lightbox');
-    const lightboxImg = document.getElementById('lightbox-img');
-    const close = document.querySelector('.lightbox .close');
-
-    links.forEach(img => {
-      img.addEventListener('click', e => {
-        e.preventDefault();
-        lightbox.style.display = 'flex';
-        lightboxImg.src = img.src;
-      });
-    });
-
-    close.onclick = () => lightbox.style.display = 'none';
-    lightbox.onclick = (e) => {
-      if (e.target !== lightboxImg) lightbox.style.display = 'none';
-    }
-  </script>
+	<script src="js/shared.js"></script>
+	<script src="js/dome-house.js"></script>
 </body>
 </html>

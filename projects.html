@@ -1,551 +1,556 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Projects - Empathy in Point Clouds</title>
-  <link rel="icon" href="images/icon.png" type="image/png">
-  <style>
-    * {
-      font-variant-ligatures: none;
-      -webkit-font-variant-ligatures: none;
-      font-feature-settings: "liga" 0, "clig" 0;
-    }
-    body {
-      margin: 0;
-      background: white;
-      text-align: center;
-      font-family: 'Akzidenz Grotesk Light', sans-serif;
-    }
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<title>Projects - Empathy in Point Clouds</title>
+	<link rel="icon" href="images/icon.png" type="image/png">
+	<style>
+		* {
+			font-variant-ligatures: none;
+			-webkit-font-variant-ligatures: none;
+			font-feature-settings: "liga" 0, "clig" 0;
+		}
+		body {
+			margin: 0;
+			background: white;
+			text-align: center;
+			font-family: 'Akzidenz Grotesk Light', sans-serif;
+		}
 
-    /* styling for the header title */
-    header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 60px;
-      background-color: white;
-      color: black;
-      display: flex;
-      align-items: center;
-      z-index: 1000;
-      padding: 0 20px;
-      justify-content: space-between;
-    }
+		/* styling for the header title */
+		header {
+			position: fixed;
+			top: 0;
+			left: 0;
+			right: 0;
+			height: 60px;
+			background-color: white;
+			color: black;
+			display: flex;
+			align-items: center;
+			z-index: 1000;
+			padding: 0 20px;
+			justify-content: space-between;
+		}
 
-    .header-title {
-      font-family: 'Akzidenz Grotesk Light Bold', sans-serif;
-      font-size: 24px;
-      height: 100%;
-      display: flex;
-      align-items: center;
-    }
+		.header-title {
+			font-family: 'Akzidenz Grotesk Light Bold', sans-serif;
+			font-size: 24px;
+			height: 100%;
+			display: flex;
+			align-items: center;
+		}
 
-    /* styling for menu options on the right */
-    nav {
-      font-family: 'Akzidenz Grotesk Light Bold', sans-serif;
-      display: flex;
-      align-items: center;
-      gap: 15px;
-    }
-    
-    nav a {
-      color: grey;
-      text-decoration: none;
-      transition: color 0.3s;
-    }
-    nav a:hover {
-      color: black;
-    }
-    nav a.active {
-      color: black;
-      pointer-events: none;
-    }
+		/* styling for menu options on the right */
+		nav {
+			font-family: 'Akzidenz Grotesk Light Bold', sans-serif;
+			display: flex;
+			align-items: center;
+			gap: 15px;
+		}
 
-    /* styling for hamburger toggle icon */ 
-    .hamburger {
-      display: none;
-      flex-direction: column;
-      justify-content: center;
-      gap: 4px;
-      cursor: pointer;
-    }
-    .hamburger div {
-      width: 25px;
-      height: 3px;
-      background-color: black;
-      transition: all 0.3s ease;
-    }
-    .hamburger.active div:nth-child(1) {
-      transform: rotate(45deg) translate(5px, 5px);
-    }
-    .hamburger.active div:nth-child(2) {
-      opacity: 0;
-    }
-    .hamburger.active div:nth-child(3) {
-      transform: rotate(-45deg) translate(5px, -5px);
-    }
+		nav a {
+			color: grey;
+			text-decoration: none;
+			transition: color 0.3s;
+		}
+		
+		nav a:hover {
+			color: black;
+		}
+		
+		nav a.active {
+			color: black;
+			pointer-events: none;
+		}
 
-    /* styling for mobile view navigation menu */
-    .mobile-nav {
-      display: none;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      background-color: white;
-      position: fixed;
-      top: 0;
-      left: 0;
-      height: 100vh;
-      width: 100vw;
-      z-index: 999;
-      transition: opacity 0.3s ease, visibility 0.3s ease;
-      opacity: 0;
-      visibility: hidden;
-    }
-    .mobile-nav.show {
-      display: flex;
-      opacity: 1;
-      visibility: visible;
-    }
-    .mobile-nav a {
-      margin: 20px 0;
-      font-size: 20px;
-      color: black;
-      text-decoration: none;
-      font-family: 'Akzidenz Grotesk Light Bold', sans-serif;
-      text-transform: uppercase;
-    }
+		/* styling for hamburger toggle icon */ 
+		.hamburger {
+			display: none;
+			flex-direction: column;
+			justify-content: center;
+			gap: 4px;
+			cursor: pointer;
+		}
+		
+		.hamburger div {
+			width: 25px;
+			height: 3px;
+			background-color: black;
+			transition: all 0.3s ease;
+		}
+		
+		.hamburger.active div:nth-child(1) {
+			transform: rotate(45deg) translate(5px, 5px);
+		}
+		
+		.hamburger.active div:nth-child(2) {
+			opacity: 0;
+		}
+		
+		.hamburger.active div:nth-child(3) {
+			transform: rotate(-45deg) translate(5px, -5px);
+		}
 
-    /* styling for filter menu*/
-    .filter-bar {
-      margin-top: 90px;
-      margin-bottom: 20px;
-    }
+		/* styling for mobile view navigation menu */
+		.mobile-nav {
+			display: none;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			background-color: white;
+			position: fixed;
+			top: 0;
+			left: 0;
+			height: 100vh;
+			width: 100vw;
+			z-index: 999;
+			transition: opacity 0.3s ease, visibility 0.3s ease;
+			opacity: 0;
+			visibility: hidden;
+		}
+		.mobile-nav.show {
+			display: flex;
+			opacity: 1;
+			visibility: visible;
+		}
+		.mobile-nav a {
+			margin: 20px 0;
+			font-size: 20px;
+			color: black;
+			text-decoration: none;
+			font-family: 'Akzidenz Grotesk Light Bold', sans-serif;
+			text-transform: uppercase;
+		}
 
-    .filter-bar button {
-      background: none;
-      border: none;
-      color: grey;
-      margin: 0 12px;
-      font-size: 16px;
-      font-family: 'Akzidenz Grotesk Roman', sans-serif;
-      cursor: pointer;
-      transition: color 0.3s, border-bottom 0.3s;
-      padding-bottom: 4px;
-    }
+		/* styling for filter menu*/
+		.filter-bar {
+			margin-top: 90px;
+			margin-bottom: 20px;
+		}
 
-    .filter-bar button.active,
-    .filter-bar button:hover {
-      color: black;
-      border-bottom: 2px solid black;
-    }
+		.filter-bar button {
+			background: none;
+			border: none;
+			color: grey;
+			margin: 0 12px;
+			font-size: 16px;
+			font-family: 'Akzidenz Grotesk Roman', sans-serif;
+			cursor: pointer;
+			transition: color 0.3s, border-bottom 0.3s;
+			padding-bottom: 4px;
+		}
 
-    /* styling for project grid */
-    .container {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-      gap: 20px;
-      padding: 40px;
-      margin-top: 20px;
-    }
-    .project-item {
-      opacity: 0;
-      transform: translateY(30px);
-    }
-    .project-item.animated {
-      animation: slideUpFadeIn 0.6s ease-out forwards;
-    }
-    .project-link {
-      display: block;
-      text-decoration: none;
-      color: inherit;
-      transition: transform 0.3s ease;
-    }
-    .project-link:hover {
-      transform: scale(1.05);
-    }
-    .project-link img {
-      width: 100%;
-      height: 135px;
-       object-fit: cover;
-      border-radius: 8px;
-    }
+		.filter-bar button.active,
+		.filter-bar button:hover {
+			color: black;
+			border-bottom: 2px solid black;
+		}
 
-    .project-link p {
-      margin-top: 8px;
-      font-size: 12px;
-      font-family: 'Akzidenz Grotesk Roman', sans-serif;
-    }
+		/* styling for project grid */
+		.container {
+			display: grid;
+			grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+			gap: 20px;
+			padding: 40px;
+			margin-top: 20px;
+		}
+		.project-item {
+			opacity: 0;
+			transform: translateY(30px);
+		}
+		.project-item.animated {
+			animation: slideUpFadeIn 0.6s ease-out forwards;
+		}
+		.project-link {
+			display: block;
+			text-decoration: none;
+			color: inherit;
+			transition: transform 0.3s ease;
+		}
+		.project-link:hover {
+			transform: scale(1.02);
+		}
+		.project-link img {
+			width: 100%;
+			height: 135px;
+			object-fit: cover;
+			border-radius: 8px;
+		}
 
-       #black-bar {
-      position: fixed;
-      top: 60px; /* height of your header */
-      left: 0;
-      right: 0;
-      height: 30px;
-      background-color: black;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 1001; /* above header */
-      transition: transform 1s cubic-bezier(0.4, 0, 1, 1);
-    }
+		.project-link p {
+			margin-top: 8px;
+			font-size: 12px;
+			font-family: 'Akzidenz Grotesk Roman', sans-serif;
+		}
 
-  .bar-lines {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-  }
+		#black-bar {
+			position: fixed;
+			top: 60px; /* height of your header */
+			left: 0;
+			right: 0;
+			height: 30px;
+			background-color: black;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			z-index: 1001; /* above header */
+			transition: transform 1s cubic-bezier(0.4, 0, 1, 1);
+		}
 
-  .bar-lines div {
-    width: 35px;
-    height: 1.7px;
-    background-color: white;
-    border-radius: 1px;
-  }
+		.bar-lines {
+			display: flex;
+			flex-direction: column;
+			gap: 5px;
+		}
 
-  body.fade-out {
-    opacity: 0;
-    transition: opacity 0.5s ease;
-  }
-  /* Match the transition in floating_proj.html */
-  body {
-    transition: opacity 1s ease;
-  }
+		.bar-lines div {
+			width: 35px;
+			height: 1.7px;
+			background-color: white;
+			border-radius: 1px;
+		}
 
-  /* Black bar slides DOWN like footer bar slides UP */
-    #black-bar.lowering {
-      transform: translateY(calc(100vh - 90px));
-      transition: transform 0.3s ease-in-out;
-    }
+		body.fade-out {
+			opacity: 0;
+			transition: opacity 0.5s ease;
+		}
+		/* Match the transition in floating_proj.html */
+		body {
+			transition: opacity 1s ease;
+		}
 
-  /* Projects overlay slides down like floating_proj's rising class (reversed) */
-    #page-wrapper.lowering-page {
-      transform: translateY(calc(100vh));
-      transition: transform 0.3s ease-in-out;
-      overflow: hidden;
-    }
+		/* Black bar slides DOWN like footer bar slides UP */
+		#black-bar.lowering {
+			transform: translateY(calc(100vh - 90px));
+			transition: transform 0.3s ease-in-out;
+		}
+
+		/* Projects overlay slides down like floating_proj's rising class (reversed) */
+		#page-wrapper.lowering-page {
+			transform: translateY(calc(100vh));
+			transition: transform 0.3s ease-in-out;
+			overflow: hidden;
+		}
 
 
-    /* styling for animation */
-    @keyframes slideUpFadeIn {
-      0% {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      100% {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
+		/* styling for animation */
+		@keyframes slideUpFadeIn {
+			0% {
+			opacity: 0;
+			transform: translateY(30px);
+		}
+		100% {
+			opacity: 1;
+			transform: translateY(0);
+		}
+		}
 
-    /* font styling */
-    @font-face {
-      font-family: 'Akzidenz Grotesk Italic';
-      src: url('fonts/Akzidenz Grotesk Italic.woff2') format('woff2');
-      font-style: italic;
-    }
-    @font-face {
-      font-family: 'Akzidenz Grotesk Light Bold Italic';
-      src: url('fonts/Akzidenz Grotesk Light Bold Italic.woff2') format('woff2');
-      font-style: italic;
-      font-weight: bold;
-    }
-    @font-face {
-      font-family: 'Akzidenz Grotesk Light Bold';
-      src: url('fonts/Akzidenz Grotesk Light Bold.woff2') format('woff2');
-      font-weight: bold;
-    }
-    @font-face {
-      font-family: 'Akzidenz Grotesk Light Italic';
-      src: url('fonts/Akzidenz Grotesk Light Italic.woff2') format('woff2');
-      font-style: italic;
-    }
-    @font-face {
-      font-family: 'Akzidenz Grotesk Light';
-      src: url('fonts/Akzidenz Grotesk Light.woff2') format('woff2');
-    }
-    @font-face {
-      font-family: 'Akzidenz Grotesk Roman';
-      src: url('fonts/Akzidenz Grotesk Roman.woff2') format('woff2');
-      font-weight: bold;
-    }
+		/* font styling */
+		@font-face {
+			font-family: 'Akzidenz Grotesk Italic';
+			src: url('fonts/Akzidenz Grotesk Italic.woff2') format('woff2');
+			font-style: italic;
+		}
+		@font-face {
+			font-family: 'Akzidenz Grotesk Light Bold Italic';
+			src: url('fonts/Akzidenz Grotesk Light Bold Italic.woff2') format('woff2');
+			font-style: italic;
+			font-weight: bold;
+		}
+		@font-face {
+			font-family: 'Akzidenz Grotesk Light Bold';
+			src: url('fonts/Akzidenz Grotesk Light Bold.woff2') format('woff2');
+			font-weight: bold;
+		}
+		@font-face {
+			font-family: 'Akzidenz Grotesk Light Italic';
+			src: url('fonts/Akzidenz Grotesk Light Italic.woff2') format('woff2');
+			font-style: italic;
+		}
+		@font-face {
+			font-family: 'Akzidenz Grotesk Light';
+			src: url('fonts/Akzidenz Grotesk Light.woff2') format('woff2');
+		}
+		@font-face {
+			font-family: 'Akzidenz Grotesk Roman';
+			src: url('fonts/Akzidenz Grotesk Roman.woff2') format('woff2');
+			font-weight: bold;
+		}
 
-    /* media queries for device responsiveness */ 
-    @media (max-width: 768px) {
-      nav {
-        display: none;
-      }
-      .hamburger {
-        display: flex;
-      }
-      .mobile-nav.show {
-        display: flex;
-      }
-      .container {
-        grid-template-columns: 1fr;
-        padding: 20px;
-      }
-      .filter-bar {
-        flex-wrap: wrap;
-        gap: 8px;
-        justify-content: center;
-      }
-      .filter-bar button {
-        margin: 8px 6px;
-        font-size: 14px;
-      }
-      .header-title {
-        font-size: 24px;
-      }
-    }
-  </style>
+		/* media queries for device responsiveness */ 
+		@media (max-width: 768px) {
+			nav {
+				display: none;
+			}
+			.hamburger {
+				display: flex;
+			}
+			.mobile-nav.show {
+				display: flex;
+			}
+			.container {
+				grid-template-columns: 1fr;
+				padding: 20px;
+			}
+			.filter-bar {
+				flex-wrap: wrap;
+				gap: 8px;
+			justify-content: center;
+			}
+			.filter-bar button {
+				margin: 8px 6px;
+				font-size: 14px;
+			}
+			.header-title {
+				font-size: 24px;
+			}
+		}
+	</style>
 </head>
 
 <body>
-  <div id="vanta-bg"></div>
-  <header>
-    <a href="index.html" style="text-decoration: none; color: black;">
-      <h1 class="header-title">Empathy in Point Clouds</h1>
-    </a>
-    <div class="hamburger" onclick="toggleMobileMenu()">
-      <div></div><div></div><div></div>
-    </div>
-    <nav>
-      <a href="projects.html" class="active">PROJECTS</a>
-      <a href="press.html">PRESS</a>
-      <a href="about.html">ABOUT</a>
-      <a href="contact.html">CONTACT</a>
-    </nav>
-  </header>
+	<div id="vanta-bg"></div>
+	<header>
+		<a href="index.html" style="text-decoration: none; color: black;">
+			<h1 class="header-title">Empathy in Point Clouds</h1>
+		</a>
+		<div class="hamburger" onclick="toggleMobileMenu()">
+			<div></div><div></div><div></div>
+		</div>
+		<nav>
+			<a href="projects.html" class="active">PROJECTS</a>
+			<a href="press.html">PRESS</a>
+			<a href="about.html">ABOUT</a>
+			<a href="contact.html">CONTACT</a>
+		</nav>
+	</header>
 
-   <!-- <div id="black-bar" data-link="projects.html" style="cursor:pointer;">
-    <div class="bar-lines">
-      <div></div>
-      <div></div>
-      <div></div>
-    </div>
-  </div> -->
+	<!-- <div id="black-bar" data-link="projects.html" style="cursor:pointer;">
+	<div class="bar-lines">
+	<div></div>
+	<div></div>
+	<div></div>
+	</div>
+	</div> -->
 
-    <!-- <div id="page-wrapper"> -->
+	<!-- <div id="page-wrapper"> -->
 
-  <div class="mobile-nav" id="mobileMenu">
-    <a href="projects.html" class="active">PROJECTS</a>
-    <a href="press.html">PRESS</a>
-    <a href="about.html">ABOUT</a>
-    <a href="contact.html">CONTACT</a>
-  </div>
+	<div class="mobile-nav" id="mobileMenu">
+		<a href="projects.html" class="active">PROJECTS</a>
+		<a href="press.html">PRESS</a>
+		<a href="about.html">ABOUT</a>
+		<a href="contact.html">CONTACT</a>
+	</div>
 
-  <div class="filter-bar">
-    <button class="filter-btn active" data-filter="all">ALL</button>
-    <button class="filter-btn" data-filter="preservation">PRESERVATION</button>
-    <button class="filter-btn" data-filter="education">EDUCATION</button>
-    <button class="filter-btn" data-filter="public">PUBLIC</button>
-  </div>
+	<div class="filter-bar">
+		<button class="filter-btn active" data-filter="all">ALL</button>
+		<button class="filter-btn" data-filter="preservation">PRESERVATION</button>
+		<button class="filter-btn" data-filter="education">EDUCATION</button>
+		<button class="filter-btn" data-filter="public">PUBLIC</button>
+	</div>
 
-  <div class="container" id="projectContainer">
-    <div class="project-item" data-category="preservation">
-      <a href="windtunnel.html" class="project-link">
-        <img src="images/AWT-thumbnail.png" alt="Wind Tunnel">
-        <p>Aerospace Wind Tunnel</p>
-      </a>
-    </div>
-    <div class="project-item" data-category="preservation">
-      <a href="arcosanti.html" class="project-link">
-        <img src="images/arco-thumbnail.png" alt="Arcosanti">
-        <p>Arcosanti</p>
-      </a>
-    </div>
-    <div class="project-item" data-category="preservation">
-      <a href="grace.html" class="project-link">
-        <img src="images/AssembleSound_thumbnail.png" alt="Assemble Sound">
-        <p>Assemble Sound</p>
-      </a>
-    </div>
-    <div class="project-item" data-category="preservation">
-      <a href="cosanti.html" class="project-link">
-        <img src="images/cosa-thumnail.png" alt="Cosanti">
-        <p>Cosanti</p>
-      </a>
-    </div>
-    <div class="project-item" data-category="preservation">
-      <a href="dome.html" class="project-link">
-        <img src="images/dome-thumbnail.png" alt="Dome House">
-        <p>Dome House</p>
-      </a>
-    </div>
-    <div class="project-item" data-category="education">
-      <a href="hatcher.html" class="project-link">
-        <img src="images/hatcher-thumbnail.jpg" alt="Hatcher Library">
-        <p>Hatcher Graduate Library</p>
-      </a>
-    </div>
-    <div class="project-item" data-category="public">
-      <a href="hill.html" class="project-link">
-        <img src="images/hill-thumbnail.png" alt="Hill Auditorium">
-        <p>Hill Auditorium</p>
-      </a>
-    </div>
-    <div class="project-item" data-category="public">
-      <a href="dude.html" class="project-link">
-        <img src="images/dude-thumbnail.png" alt="James and Anne Duderstadt Center">
-        <p>James and Anne Duderstadt Center</p>
-      </a>
-    </div>
-    <div class="project-item" data-category="education">
-      <a href="annex.html" class="project-link">
-        <img src="images/annex-thumbnail.jpg" alt="Liberty Research Annex">
-        <p>Liberty Research Annex</p>
-      </a>
-    </div>
-    <div class="project-item" data-category="public">
-      <a href="matthaei.html" class="project-link">
-        <img src="images/matthaei-thumbnail.jpg" alt="Matthaei Botanical Gardens Greenhouse">
-        <p>Matthaei Botanical Gardens Greenhouse</p>
-      </a>
-    </div>
-    <div class="project-item" data-category="public">
-      <a href="stadium.html" class="project-link">
-        <img src="images/michiganStadium1.png" alt="Michigan Stadium">
-        <p>Michigan Stadium</p>
-      </a>
-    </div>
-    <div class="project-item" data-category="preservation">
-      <a href="miibs.html" class="project-link">
-        <img src="images/miibs-thumbnail.png" alt="Mt. Pleasant Indian Industrial Boarding School Auditorium">
-        <p>Mt. Pleasant Indian Industrial Boarding School Auditorium</p>
-      </a>
-    </div>
-    <div class="project-item" data-category="preservation">
-      <a href="elliot.html" class="project-link">
-        <img src="images/mtelliot-thumbnail.png" alt="Mt.Elliott Open Air Research Facility">
-        <p>Mt.Elliott Open Air Research Facility</p>
-      </a>
-    </div>
-    <div class="project-item" data-category="public">
-      <a href="grove.html" class="project-link">
-        <img src="images/grove-thumbnail.png" alt="The Grove">
-        <p>Eda U. Gerstacker Grove</p>
-      </a>
-    </div>
-    <div class="project-item" data-category="preservation">
-      <a href="packard.html" class="project-link">
-        <img src="images/packard-thumbnail.jpeg" alt="Packard Automotive Plant">
-        <p>Packard Automotive Plant</p>
-      </a>
-    </div>
-    <div class="project-item" data-category="public">
-      <a href="palmer.html" class="project-link">
-        <img src="images/palmerParkAcademy_persp2.png" alt="Palmer Park Academy">
-        <p>Palmer Park Academy</p>
-      </a>
-    </div>
-    <div class="project-item" data-category="public">
-      <a href="power.html" class="project-link">
-        <img src="images/power-thumbnail.jpg" alt="Power Center">
-        <p>Power Center</p>
-      </a>
-    </div>
-    <div class="project-item" data-category="education">
-      <a href="rackham.html" class="project-link">
-        <img src="images/rackham-thumbnail.png" alt="Rackham Graduate School">
-        <p>Rackham Graduate School</p>
-      </a>
-    </div>
-    <div class="project-item" data-category="education">
-      <a href="scanlab.html" class="project-link">
-        <img src="images/scanlab_photo_1.jpg" alt="Scan Lab">
-        <p>Scan Lab</p>
-      </a>
-    </div>
-    <div class="project-item" data-category="public">
-      <a href="stmary.html" class="project-link">
-        <img src="images/stmary-thumbnail.jpg" alt="St. Mary Mercy Chapel">
-        <p>St. Mary Mercy Chapel</p>
-      </a>
-    </div>
-    <div class="project-item" data-category="education">
-      <a href="taubman.html" class="project-link">
-        <img src="images/taubman-thumbnail.png" alt="Taubman College">
-        <p>Taubman College</p>
-      </a>
-    </div>
-    <div class="project-item" data-category="preservation">
-      <a href="teo.html" class="project-link">
-        <img src="images/TEO-thumbnail.png" alt="Teotihuacan">
-        <p>Teotihuacan</p>
-      </a>
-    </div>
-    <div class="project-item" data-category="public">
-      <a href="thayer.html" class="project-link">
-        <img src="images/thayer-thumbnail.jpg" alt="Thayer Infill Site">
-        <p>Thayer Infill Site</p>
-      </a>
-    </div>
-    <div class="project-item" data-category="education">
-      <a href="OR3.html" class="project-link">
-        <img src="images/OR3-thumbnail.png" alt="Thayer Infill Site">
-        <p>UMHS CVCC OR3</p>
-      </a>
-    </div>
-    <div class="project-item" data-category="preservation">
-      <a href="whithorn.html" class="project-link">
-        <img src="images/whithorn-thumbnail.jpeg" alt="Whithorn St House">
-        <p>Whithorn St House</p>
-      </a>
-    </div>
-  </div>
-  </div>
+	<div class="container" id="projectContainer">
+		<div class="project-item" data-category="preservation">
+			<a href="windtunnel.html" class="project-link">
+				<img src="images/AWT-thumbnail.png" alt="Wind Tunnel">
+				<p>Aerospace Wind Tunnel</p>
+			</a>
+		</div>
+		<div class="project-item" data-category="preservation">
+			<a href="arcosanti.html" class="project-link">
+				<img src="images/arco-thumbnail.png" alt="Arcosanti">
+				<p>Arcosanti</p>
+			</a>
+		</div>
+		<div class="project-item" data-category="preservation">
+			<a href="grace.html" class="project-link">
+				<img src="images/AssembleSound_thumbnail.png" alt="Assemble Sound">
+				<p>Assemble Sound</p>
+			</a>
+		</div>
+		<div class="project-item" data-category="preservation">
+			<a href="cosanti.html" class="project-link">
+				<img src="images/cosa-thumnail.png" alt="Cosanti">
+				<p>Cosanti</p>
+			</a>
+		</div>
+		<div class="project-item" data-category="preservation">
+			<a href="dome.html" class="project-link">
+				<img src="images/dome-thumbnail.png" alt="Dome House">
+				<p>Dome House</p>
+			</a>
+		</div>
+		<div class="project-item" data-category="education">
+			<a href="hatcher.html" class="project-link">
+				<img src="images/hatcher-thumbnail.jpg" alt="Hatcher Library">
+				<p>Hatcher Graduate Library</p>
+			</a>
+		</div>
+		<div class="project-item" data-category="public">
+			<a href="hill.html" class="project-link">
+				<img src="images/hill-thumbnail.png" alt="Hill Auditorium">
+				<p>Hill Auditorium</p>
+			</a>
+		</div>
+		<div class="project-item" data-category="public">
+			<a href="dude.html" class="project-link">
+				<img src="images/dude-thumbnail.png" alt="James and Anne Duderstadt Center">
+				<p>James and Anne Duderstadt Center</p>
+			</a>
+		</div>
+		<div class="project-item" data-category="education">
+			<a href="annex.html" class="project-link">
+				<img src="images/annex-thumbnail.jpg" alt="Liberty Research Annex">
+				<p>Liberty Research Annex</p>
+			</a>
+		</div>
+		<div class="project-item" data-category="public">
+			<a href="matthaei.html" class="project-link">
+				<img src="images/matthaei-thumbnail.jpg" alt="Matthaei Botanical Gardens Greenhouse">
+				<p>Matthaei Botanical Gardens Greenhouse</p>
+			</a>
+		</div>
+		<div class="project-item" data-category="public">
+			<a href="stadium.html" class="project-link">
+				<img src="images/michiganStadium1.png" alt="Michigan Stadium">
+				<p>Michigan Stadium</p>
+			</a>
+		</div>
+		<div class="project-item" data-category="preservation">
+			<a href="miibs.html" class="project-link">
+				<img src="images/miibs-thumbnail.png" alt="Mt. Pleasant Indian Industrial Boarding School Auditorium">
+				<p>Mt. Pleasant Indian Industrial Boarding School Auditorium</p>
+			</a>
+		</div>
+		<div class="project-item" data-category="preservation">
+			<a href="elliot.html" class="project-link">
+				<img src="images/mtelliot-thumbnail.png" alt="Mt.Elliott Open Air Research Facility">
+				<p>Mt.Elliott Open Air Research Facility</p>
+			</a>
+		</div>
+		<div class="project-item" data-category="public">
+			<a href="grove.html" class="project-link">
+				<img src="images/grove-thumbnail.png" alt="The Grove">
+				<p>Eda U. Gerstacker Grove</p>
+			</a>
+		</div>
+		<div class="project-item" data-category="preservation">
+			<a href="packard.html" class="project-link">
+				<img src="images/packard-thumbnail.jpeg" alt="Packard Automotive Plant">
+				<p>Packard Automotive Plant</p>
+			</a>
+		</div>
+		<div class="project-item" data-category="public">
+			<a href="palmer.html" class="project-link">
+				<img src="images/palmerParkAcademy_persp2.png" alt="Palmer Park Academy">
+				<p>Palmer Park Academy</p>
+			</a>
+		</div>
+		<div class="project-item" data-category="public">
+			<a href="power.html" class="project-link">
+				<img src="images/power-thumbnail.jpg" alt="Power Center">
+				<p>Power Center</p>
+			</a>
+		</div>
+		<div class="project-item" data-category="education">
+			<a href="rackham.html" class="project-link">
+				<img src="images/rackham-thumbnail.png" alt="Rackham Graduate School">
+				<p>Rackham Graduate School</p>
+			</a>
+		</div>
+		<div class="project-item" data-category="education">
+			<a href="scanlab.html" class="project-link">
+				<img src="images/scanlab_photo_1.jpg" alt="Scan Lab">
+				<p>Scan Lab</p>
+			</a>
+		</div>
+		<div class="project-item" data-category="public">
+			<a href="stmary.html" class="project-link">
+				<img src="images/stmary-thumbnail.jpg" alt="St. Mary Mercy Chapel">
+				<p>St. Mary Mercy Chapel</p>
+			</a>
+		</div>
+		<div class="project-item" data-category="education">
+			<a href="taubman.html" class="project-link">
+				<img src="images/taubman-thumbnail.png" alt="Taubman College">
+				<p>Taubman College</p>
+			</a>
+		</div>
+		<div class="project-item" data-category="preservation">
+			<a href="teo.html" class="project-link">
+				<img src="images/TEO-thumbnail.png" alt="Teotihuacan">
+				<p>Teotihuacan</p>
+			</a>
+		</div>
+		<div class="project-item" data-category="public">
+			<a href="thayer.html" class="project-link">
+				<img src="images/thayer-thumbnail.jpg" alt="Thayer Infill Site">
+				<p>Thayer Infill Site</p>
+			</a>
+		</div>
+		<div class="project-item" data-category="education">
+			<a href="OR3.html" class="project-link">
+				<img src="images/OR3-thumbnail.png" alt="Thayer Infill Site">
+				<p>UMHS CVCC OR3</p>
+			</a>
+		</div>
+		<div class="project-item" data-category="preservation">
+			<a href="whithorn.html" class="project-link">
+				<img src="images/whithorn-thumbnail.jpeg" alt="Whithorn St House">
+				<p>Whithorn St House</p>
+			</a>
+		</div>
+	</div>
 
-  <script>
-    const projectItems = document.querySelectorAll(".project-item");
-    const filterButtons = document.querySelectorAll(".filter-btn");
+	<script>
+		const projectItems = document.querySelectorAll(".project-item");
+		const filterButtons = document.querySelectorAll(".filter-btn");
 
-    filterButtons.forEach(button => {
-      button.addEventListener("click", () => {
-        const selected = button.getAttribute("data-filter");
+		filterButtons.forEach(button => {
+			button.addEventListener("click", () => {
+				const selected = button.getAttribute("data-filter");
 
-        filterButtons.forEach(btn => btn.classList.remove("active"));
-        button.classList.add("active");
+				filterButtons.forEach(btn => btn.classList.remove("active"));
+				button.classList.add("active");
 
-        projectItems.forEach(project => {
-          const category = project.getAttribute("data-category");
-          project.style.display = selected === "all" || category === selected ? "block" : "none";
-        });
-      });
-    });
+				projectItems.forEach(project => {
+					const category = project.getAttribute("data-category");
+					project.style.display = selected === "all" || category === selected ? "block" : "none";
+				});
+			});
+		});
 
-    function toggleMobileMenu() {
-      const mobileMenu = document.getElementById('mobileMenu');
-      const hamburger = document.querySelector('.hamburger');
+		function toggleMobileMenu() {
+			const mobileMenu = document.getElementById('mobileMenu');
+			const hamburger = document.querySelector('.hamburger');
 
-      mobileMenu.classList.toggle('show');
-      hamburger.classList.toggle('active');
-    }
+			mobileMenu.classList.toggle('show');
+			hamburger.classList.toggle('active');
+		}
 
-    // const blackBar = document.getElementById("black-bar");
-    const pageWrapper = document.getElementById("page-wrapper");
+		// const blackBar = document.getElementById("black-bar");
+		const pageWrapper = document.getElementById("page-wrapper");
 
-// blackBar.addEventListener("click", () => {
-//   blackBar.classList.add("lowering");
-//   pageWrapper.classList.add("lowering-page");
+		// blackBar.addEventListener("click", () => {
+		//   blackBar.classList.add("lowering");
+		//   pageWrapper.classList.add("lowering-page");
 
-//   setTimeout(() => {
-//     window.location.href = "floating_proj.html";
-//   }, 700); // delayed to allow fade in to finish before navigation
-// });
+		//   setTimeout(() => {
+		//     window.location.href = "floating_proj.html";
+		//   }, 700); // delayed to allow fade in to finish before navigation
+		// });
 
-    window.addEventListener("load", () => {
-      const projectItems = document.querySelectorAll(".project-item");
+		window.addEventListener("load", () => {
+			const projectItems = document.querySelectorAll(".project-item");
 
-      projectItems.forEach((item, index) => {
-        setTimeout(() => {
-          item.classList.add("animated");
-        }, index * 100);
-      });
-    });
-  </script>
+			projectItems.forEach((item, index) => {
+				setTimeout(() => {
+					item.classList.add("animated");
+				}, index * 100);
+			});
+		});
+	</script>
 </body>
 </html>
