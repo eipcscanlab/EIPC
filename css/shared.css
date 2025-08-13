@@ -195,6 +195,27 @@ body {
   right: 20px;
 }
 
+/* Improve lightbox arrows for mobile */
+@media (max-width: 768px) {
+  .arrow {
+    font-size: 32px;        /* smaller arrows */
+    width: 36px;
+    height: 36px;
+    background: rgba(255, 255, 255, 0.7); /* semi-transparent background */
+    color: #000;
+    top: auto;
+    bottom: 20px;           /* move to bottom instead of middle */
+    transform: none;        /* remove vertical centering */
+  }
+  .arrow.left {
+    left: 20%;
+  }
+  .arrow.right {
+    right: 20%;
+  }
+}
+
+
 /* RESPONSIVE */
 @media (max-width: 768px) {
 	.back-x {
