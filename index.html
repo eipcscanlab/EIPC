@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <link rel="stylesheet" href="css/perlin.css" />
-  <title>Projects - Empathy in Point Clouds </title>
-  <link rel="icon" href="images/icon.png" type="image/png">
-  <style>
-    /* styling for the header title */
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<link rel="stylesheet" href="css/perlin.css" />
+	<title>Projects - Empathy in Point Clouds </title>
+	<link rel="icon" href="images/icon.png" type="image/png">
+<style>
+	/* styling for the header title */
     header {
       position: fixed;
       top: 0;
@@ -213,203 +213,199 @@
       }
     }
 
-    /* styling for mobile view navigation menu */
-    .mobile-nav {
-      display: none;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      background-color: white;
-      position: fixed;
-      top: 0;
-      left: 0;
-      height: 100vh;
-      width: 100vw;
-      z-index: 999;
-      transition: opacity 0.3s ease, visibility 0.3s ease;
-      opacity: 0;
-      visibility: hidden;
-    }
-    .mobile-nav.show {
-      display: flex;
-      opacity: 1;
-      visibility: visible;
-    }
-    .mobile-nav a {
-      margin: 20px 0;
-      font-size: 20px;
-      color: black;
-      text-decoration: none;
-      font-family: 'Akzidenz Grotesk Light Bold', sans-serif;
-      text-transform: uppercase;
-    }
+	/* styling for mobile view navigation menu */
+	.mobile-nav {
+		display: none;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		background-color: white;
+		position: fixed;
+		top: 0;
+		left: 0;
+		height: 100vh;
+		width: 100vw;
+		z-index: 999;
+		transition: opacity 0.3s ease, visibility 0.3s ease;
+		opacity: 0;
+		visibility: hidden;
+	}
+	.mobile-nav.show {
+		display: flex;
+		opacity: 1;
+		visibility: visible;
+	}
+	.mobile-nav a {
+		margin: 20px 0;
+		font-size: 20px;
+		color: black;
+		text-decoration: none;
+		font-family: 'Akzidenz Grotesk Light Bold', sans-serif;
+		text-transform: uppercase;
+	}
 
-    /* styling for hamburger toggle icon */ 
-    .hamburger {
-      display: none;
-      flex-direction: column;
-      justify-content: center;
-      gap: 4px;
-      cursor: pointer;
-    }
-    .hamburger div {
-      width: 25px;
-      height: 3px;
-      background-color: black;
-      transition: all 0.3s ease;
-    }
-    .hamburger.active div:nth-child(1) {
-      transform: rotate(45deg) translate(5px, 5px);
-    }
-    .hamburger.active div:nth-child(2) {
-      opacity: 0;
-    }
-    .hamburger.active div:nth-child(3) {
-      transform: rotate(-45deg) translate(5px, -5px);
-    }
+	/* styling for hamburger toggle icon */ 
+	.hamburger {
+		display: none;
+		flex-direction: column;
+		justify-content: center;
+		gap: 4px;
+		cursor: pointer;
+	}
+	.hamburger div {
+		width: 25px;
+		height: 3px;
+		background-color: black;
+		transition: all 0.3s ease;
+	}
+	.hamburger.active div:nth-child(1) {
+		transform: rotate(45deg) translate(5px, 5px);
+	}
+	.hamburger.active div:nth-child(2) {
+		opacity: 0;
+	}
+	.hamburger.active div:nth-child(3) {
+		transform: rotate(-45deg) translate(5px, -5px);
+	}
 
-    /* Fade out animation */
-    .fade-out {
-      animation: fadeOut 1s forwards;
-    }
+	/* Fade out animation */
+	.fade-out {
+		animation: fadeOut 1s forwards;
+	}
 
-#flyby-container {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: 10;
-}
+	#flyby-container {
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100vw;
+		height: 100vh;
+		z-index: 10;
+	}
 
-.flyby {
-  animation: flyby-right 60s ease-out forwards;
-  mix-blend-mode: multiply;
-  pointer-events: auto;
-  cursor: pointer;
-  position: absolute;
-  height: auto;
-  width: 250px;
-  will-change: transform;
-  filter: sepia(1) hue-rotate(335deg) saturate(300%)
-}
-.flyby:hover {
-  animation-play-state: paused;
-}
+	.flyby {
+		animation: flyby-right 60s ease-out forwards;
+		mix-blend-mode: multiply;
+		pointer-events: auto;
+		cursor: pointer;
+		position: absolute;
+		height: auto;
+		width: 250px;
+		will-change: transform;
+		filter: sepia(1) hue-rotate(335deg) saturate(300%)
+	}
+	.flyby:hover {
+		animation-play-state: paused;
+	}
 
-#floater-container,
-#flyby-container {
-  pointer-events: none;
-}
+	#floater-container,
+	#flyby-container {
+		pointer-events: none;
+	}
 
-.floating,
-.flyby {
-  pointer-events: auto;
-  cursor: pointer;
-    mix-blend-mode: multiply;
-}
+	.floating,
+	.flyby {
+		pointer-events: auto;
+		cursor: pointer;
+		mix-blend-mode: multiply;
+	}
 
-.flyby-track-0 { top: 0%; }
-.flyby-track-1 { top: 15%; }
-.flyby-track-2 { top: 30%; }
-.flyby-track-3 { top: 45%; }
-.flyby-track-4 { top: 60%; }
+	.flyby-track-0 { top: 0%; }
+	.flyby-track-1 { top: 15%; }
+	.flyby-track-2 { top: 30%; }
+	.flyby-track-3 { top: 45%; }
+	.flyby-track-4 { top: 60%; }
 
 
-@keyframes flyby-with-wobble {
-  0% {
-    transform: translateX(-200px) translateY(0);
-  }
-  50% {
-    transform: translateX(calc(55vw)) translateY(-8px);
-  }
-  100% {
-    transform: translateX(120vw) translateY(0);
-  }
-}
+	@keyframes flyby-with-wobble {
+		0% {
+			transform: translateX(-200px) translateY(0);
+		}
+		50% {
+			transform: translateX(calc(55vw)) translateY(-8px);
+		}
+		100% {
+			transform: translateX(120vw) translateY(0);
+		}
+	}
 
-@keyframes flyby-right {
-  0% {
-    transform: translateX(-200px);
-  }
-  100% {
-    transform: translateX(120vw);
-  }
-}
+	@keyframes flyby-right {
+		0% {
+			transform: translateX(-200px);
+		}
+		100% {
+			transform: translateX(120vw);
+		}
+	}
     @keyframes fadeOut {
-      from { opacity: 1; }
-      to { opacity: 0; }
+		from { opacity: 1; }
+		to { opacity: 0; }
     }
 
      @font-face {
-      font-family: 'Akzidenz Grotesk Italic';
-      src: url('fonts/Akzidenz Grotesk Italic.ttf') format('truetype');
-      font-style: italic;
+		font-family: 'Akzidenz Grotesk Italic';
+		src: url('fonts/Akzidenz Grotesk Italic.ttf') format('truetype');
+		font-style: italic;
     }
     @font-face {
-      font-family: 'Akzidenz Grotesk Italic';
-      src: url('fonts/Akzidenz Grotesk Italic.woff2') format('woff2');
-      font-style: italic;
+		font-family: 'Akzidenz Grotesk Italic';
+		src: url('fonts/Akzidenz Grotesk Italic.woff2') format('woff2');
+		font-style: italic;
     }
     @font-face {
-      font-family: 'Akzidenz Grotesk Light Bold Italic';
-      src: url('fonts/Akzidenz Grotesk Light Bold Italic.woff2') format('woff2');
-      font-style: italic;
-      font-weight: bold;
+		font-family: 'Akzidenz Grotesk Light Bold Italic';
+		src: url('fonts/Akzidenz Grotesk Light Bold Italic.woff2') format('woff2');
+		font-style: italic;
+		font-weight: bold;
     }
     @font-face {
-      font-family: 'Akzidenz Grotesk Light Bold';
-      src: url('fonts/Akzidenz Grotesk Light Bold.woff2') format('woff2');
-      font-weight: bold;
+		font-family: 'Akzidenz Grotesk Light Bold';
+		src: url('fonts/Akzidenz Grotesk Light Bold.woff2') format('woff2');
+		font-weight: bold;
     }
     @font-face {
-      font-family: 'Akzidenz Grotesk Light Italic';
-      src: url('fonts/Akzidenz Grotesk Light Italic.woff2') format('woff2');
-      font-style: italic;
+		font-family: 'Akzidenz Grotesk Light Italic';
+		src: url('fonts/Akzidenz Grotesk Light Italic.woff2') format('woff2');
+		font-style: italic;
     }
     @font-face {
-      font-family: 'Akzidenz Grotesk Light';
-      src: url('fonts/Akzidenz Grotesk Light.woff2') format('woff2');
+		font-family: 'Akzidenz Grotesk Light';
+		src: url('fonts/Akzidenz Grotesk Light.woff2') format('woff2');
     }
     @font-face {
-      font-family: 'Akzidenz Grotesk Roman';
-      src: url('fonts/Akzidenz Grotesk Roman.woff2') format('woff2');
-      font-weight: bold;
+		font-family: 'Akzidenz Grotesk Roman';
+		src: url('fonts/Akzidenz Grotesk Roman.woff2') format('woff2');
+		font-weight: bold;
     }
 
 
     @media (max-width: 768px) {
-      nav {
-        display: none;
-      }
-      .hamburger {
-        display: flex;
-      }
-      .mobile-nav.show {
-        display: flex;
-      }
-      .container {
-        grid-template-columns: 1fr;
-        padding: 20px;
-      }
-      .filter-bar {
-        flex-wrap: wrap;
-        gap: 8px;
-        justify-content: center;
-      }
-      .filter-bar button {
-        margin: 8px 6px;
-        font-size: 14px;
-      }
-      .header-title {
-        font-size: 24px;
-      }
+		nav {
+			display: none;
+		}
+		.hamburger {
+			display: flex;
+		}
+		.mobile-nav.show {
+			display: flex;
+		}
+		.container {
+			grid-template-columns: 1fr;
+			padding: 20px;
+		}
+		.filter-bar {
+			flex-wrap: wrap;
+			gap: 8px;
+			justify-content: center;
+		}
+		.filter-bar button {
+			margin: 8px 6px;
+			font-size: 14px;
+		}
+		.header-title {
+			font-size: 24px;
+		}
     }
-
-    
-
-  </style>
-
+</style>
 </head>
 <body>
   <!-- <div id="footer-bar" data-link="projects.html">
@@ -470,278 +466,278 @@
   
 
 <script>
-  const FLOAT_SPEED = 0.5;
-  const WOBBLE_FREQ = 0.002;
-  const WOBBLE_MAG = 20;
-  const MAX_INSTANCES_PER_IMAGE = 1;
-  const SPAWN_INTERVAL = 1000;
-const isMobile = window.innerWidth <= 600;
-const BOUNCE_MARGIN = isMobile ? 30 : 100;
+	const FLOAT_SPEED = 0.5;
+	const WOBBLE_FREQ = 0.002;
+	const WOBBLE_MAG = 20;
+	const MAX_INSTANCES_PER_IMAGE = 1;
+	const SPAWN_INTERVAL = 1000;
+	const isMobile = window.innerWidth <= 600;
+	const BOUNCE_MARGIN = isMobile ? 30 : 100;
 
-  const imageSources = [
-    "point_cloud_renders/AssembleSound_anchor_color.gif",
-	"point_cloud_renders/AWT_anchor_color.gif",
-	"point_cloud_renders/DomeHouse_anchor_color.gif",
-	"point_cloud_renders/HillAuditorium_anchor_color.gif",
-	"point_cloud_renders/Infill_anchor_color.gif",
-	"point_cloud_renders/MatthaeiBotanical_anchor_color.gif",
-	"point_cloud_renders/MichiganStadium_anchor_color.gif",
-	"point_cloud_renders/MIIBS_anchor_color.gif",
-	"point_cloud_renders/OR_anchor_color.gif",
-	"point_cloud_renders/Rackham_anchor_color.gif",
-	"point_cloud_renders/StMary_anchor_color.gif",
-	"point_cloud_renders/Teotihuacan_anchor_color.gif",
-	"point_cloud_renders/Whithorn_anchor_color.gif"
-  ];
+	const imageSources = [
+		//"point_cloud_renders/AssembleSound_anchor_color.gif",
+		"point_cloud_renders/AWT_anchor_color.gif",
+		//"point_cloud_renders/DomeHouse_anchor_color.gif",
+		"point_cloud_renders/HillAuditorium_anchor_color.gif",
+		//"point_cloud_renders/Infill_anchor_color.gif",
+		"point_cloud_renders/MatthaeiBotanical_anchor_color.gif",
+		//"point_cloud_renders/MichiganStadium_anchor_color.gif",
+		"point_cloud_renders/MIIBS_anchor_color.gif",
+		"point_cloud_renders/OR_anchor_color.gif",
+		"point_cloud_renders/Rackham_anchor_color.gif",
+		"point_cloud_renders/StMary_anchor_color.gif",
+		"point_cloud_renders/Teotihuacan_anchor_color.gif",
+		//"point_cloud_renders/Whithorn_anchor_color.gif"
+	];
 
-  const imageLinks = [
-    "grace.html",
-    "windtunnel.html",
-	"dome.html",
-    "hill.html",
-	"infill.html",
-	"matthaei.html",
-    "stadium.html",
-    "miibs.html",
-    "OR3.html",
-    "rackham.html",
-	"stmary.html",
-	"teo.html",
-	"whithorn.html"
-  ];
+	const imageLinks = [
+		//"grace.html",
+		"windtunnel.html",
+		//"dome.html",
+		"hill.html",
+		//"infill.html",
+		"matthaei.html",
+		//"stadium.html",
+		"miibs.html",
+		"OR3.html",
+		"rackham.html",
+		"stmary.html",
+		"teo.html",
+		//"whithorn.html"
+	];
 
-  const imageCategories = [
-  ["Preservation"],	// AssembleSound
-  ["Education"], 	// AWT
-  ["Preservation"], //DomeHouse
-  ["Public"], //Hill
-  ["Education"], //Infill
-  ["Public"], //Matthaei Botanical
-  ["Public"], //michigan stadium
-  ["Preservation"], //MIIBS
-  ["Education"],	// OR
-  ["Education"],	// Rackham
-  ["Public"],	// StMary
-  ["Preservation"],	//teotihuacan
-  ["Preservation"],	//whithorn
-];
+	const imageCategories = [
+		//["Preservation"],	// AssembleSound
+		["Education"], 	// AWT
+		//["Preservation"], //DomeHouse
+		["Public"], //Hill
+		//["Education"], //Infill
+		["Public"], //Matthaei Botanical
+		//["Public"], //michigan stadium
+		["Preservation"], //MIIBS
+		["Education"],	// OR
+		["Education"],	// Rackham
+		["Public"],	// StMary
+		["Preservation"],	//teotihuacan
+		//["Preservation"],	//whithorn
+	];
 
-  const floaters = [];
-  const imageCounts = {};
-  imageSources.forEach(src => imageCounts[src] = 0);
-  const template = document.getElementById('image-template');
-  let time = 0;
+	const floaters = [];
+	const imageCounts = {};
+	imageSources.forEach(src => imageCounts[src] = 0);
+	const template = document.getElementById('image-template');
+	let time = 0;
 
-  const FILTERS = [
-  "sepia(1) hue-rotate(150deg) saturate(200%)", //cyan
-  "sepia(1) hue-rotate(290deg) saturate(200%)", //magenta
-  "sepia(1) hue-rotate(0deg) saturate(200%)", //yellow
-  "grayscale(1)" //black
-];
+	const FILTERS = [
+		"sepia(1) hue-rotate(150deg) saturate(200%)", //cyan
+		"sepia(1) hue-rotate(290deg) saturate(200%)", //magenta
+		"sepia(1) hue-rotate(0deg) saturate(200%)", //yellow
+		"grayscale(1)" //black
+	];
 
-function createFloater(src, x, y, dx, dy, index) {
-  if (imageCounts[src] >= MAX_INSTANCES_PER_IMAGE) return false;
+	function createFloater(src, x, y, dx, dy, index) {
+	if (imageCounts[src] >= MAX_INSTANCES_PER_IMAGE) return false;
 
-  let el;
-  if (src.endsWith(".webm")) {
-    el = document.createElement("video");
-    el.src = src;
-    el.autoplay = true;
-    el.loop = true;
-    el.muted = true;
-    el.playsInline = true;
-  } else {
-    el = document.createElement("img");
-    el.src = src;
-  }
+	let el;
+	if (src.endsWith(".webm")) {
+		el = document.createElement("video");
+		el.src = src;
+		el.autoplay = true;
+		el.loop = true;
+		el.muted = true;
+		el.playsInline = true;
+	} else {
+		el = document.createElement("img");
+		el.src = src;
+	}
 
-  el.className = "floating";
+	el.className = "floating";
 
-  const randomFilter = FILTERS[Math.floor(Math.random() * FILTERS.length)];
-  el.style.filter = randomFilter;
+	const randomFilter = FILTERS[Math.floor(Math.random() * FILTERS.length)];
+	el.style.filter = randomFilter;
 
-  const minHeight = 150;
-  const maxHeight = 230;
-  const randomHeight = minHeight + Math.random() * (maxHeight - minHeight);
-  el.style.height = `${randomHeight}px`;
-  el.style.width = 'auto'; // Maintain aspect ratio
+	const minHeight = 150;
+	const maxHeight = 230;
+	const randomHeight = minHeight + Math.random() * (maxHeight - minHeight);
+	el.style.height = `${randomHeight}px`;
+	el.style.width = 'auto'; // Maintain aspect ratio
 
-  document.getElementById('floater-container').appendChild(el);
+	document.getElementById('floater-container').appendChild(el);
 
-  const currentCategories = imageCategories[index] || [];
-  const allCategories = ["Preservation", "Education", "Public"];
+	const currentCategories = imageCategories[index] || [];
+	const allCategories = ["Preservation", "Education", "Public"];
 
-  const captionEl = document.createElement('div');
-  captionEl.className = 'caption';
-  captionEl.innerHTML = `
-    <div class="caption-row">
-      ${allCategories.map(cat => {
-        const isActive = currentCategories.includes(cat);
-        return `<span class="caption-category ${isActive ? 'active' : ''}">${cat}</span>`;
-      }).join('')}
-    </div>
-  `;
+	const captionEl = document.createElement('div');
+	captionEl.className = 'caption';
+	captionEl.innerHTML = `
+	<div class="caption-row">
+		${allCategories.map(cat => {
+			const isActive = currentCategories.includes(cat);
+			return `<span class="caption-category ${isActive ? 'active' : ''}">${cat}</span>`;
+		}).join('')}
+	</div>
+	`;
 
-  document.getElementById('floater-container').appendChild(captionEl);
+	document.getElementById('floater-container').appendChild(captionEl);
 
-  const phaseX = Math.random() * Math.PI * 2;
-  const phaseY = Math.random() * Math.PI * 2;
+	const phaseX = Math.random() * Math.PI * 2;
+	const phaseY = Math.random() * Math.PI * 2;
 
-  const floater = {
-    el,
-    captionEl,
-    src,
-    x,
-    y,
-    dx,
-    dy,
-    phaseX,
-    phaseY,
-    paused: false
-  };
-  floaters.push(floater);
-  imageCounts[src]++;
+	const floater = {
+		el,
+		captionEl,
+		src,
+		x,
+		y,
+		dx,
+		dy,
+		phaseX,
+		phaseY,
+		paused: false
+	};
+	floaters.push(floater);
+	imageCounts[src]++;
 
-  requestAnimationFrame(() => { el.style.opacity = 1; });
-  el.style.pointerEvents = "auto";
+	requestAnimationFrame(() => { el.style.opacity = 1; });
+	el.style.pointerEvents = "auto";
 
-  el.addEventListener('mouseenter', () => {
-    floater.paused = true;
-    captionEl.style.opacity = 1;
-  });
-  el.addEventListener('mouseleave', () => {
-    floater.paused = false;
-    captionEl.style.opacity = 0;
-  });
+	el.addEventListener('mouseenter', () => {
+		floater.paused = true;
+		captionEl.style.opacity = 1;
+	});
+	el.addEventListener('mouseleave', () => {
+		floater.paused = false;
+		captionEl.style.opacity = 0;
+	});
 
-  const url = (index !== -1) ? imageLinks[index] : 'default.html';
-  el.addEventListener('click', () => {
-    document.body.classList.add('fade-out');
-    setTimeout(() => {
-      window.location.href = url;
-    }, 500);
-  });
+	const url = (index !== -1) ? imageLinks[index] : 'default.html';
+	el.addEventListener('click', () => {
+		document.body.classList.add('fade-out');
+		setTimeout(() => {
+			window.location.href = url;
+		}, 500);
+	});
 
-  return true;
-}
+	return true;
+	}
 
-  function spawnFromEdge() {
-    const src = imageSources[Math.floor(Math.random() * imageSources.length)];
-    if (imageCounts[src] >= MAX_INSTANCES_PER_IMAGE) return;
+	function spawnFromEdge() {
+		const src = imageSources[Math.floor(Math.random() * imageSources.length)];
+		if (imageCounts[src] >= MAX_INSTANCES_PER_IMAGE) return;
 
-    const side = Math.floor(Math.random() * 4);
-    let x, y, dx, dy;
-    const buffer = 200;
+		const side = Math.floor(Math.random() * 4);
+		let x, y, dx, dy;
+		const buffer = 200;
 
-    switch (side) {
-      case 0:
-        x = Math.random() * window.innerWidth;
-        y = -buffer;
-        dx = (Math.random() - 0.5) * FLOAT_SPEED * 2;
-        dy = Math.random() * FLOAT_SPEED;
-        break;
-      case 1:
-        x = window.innerWidth + buffer;
-        y = Math.random() * window.innerHeight;
-        dx = -Math.random() * FLOAT_SPEED;
-        dy = (Math.random() - 0.5) * FLOAT_SPEED * 2;
-        break;
-      case 2:
-        x = Math.random() * window.innerWidth;
-        y = window.innerHeight + buffer;
-        dx = (Math.random() - 0.5) * FLOAT_SPEED * 2;
-        dy = -Math.random() * FLOAT_SPEED;
-        break;
-      case 3:
-        x = -buffer;
-        y = Math.random() * window.innerHeight;
-        dx = Math.random() * FLOAT_SPEED;
-        dy = (Math.random() - 0.5) * FLOAT_SPEED * 2;
-        break;
-    }
+		switch (side) {
+			case 0:
+				x = Math.random() * window.innerWidth;
+				y = -buffer;
+				dx = (Math.random() - 0.5) * FLOAT_SPEED * 2;
+				dy = Math.random() * FLOAT_SPEED;
+				break;
+			case 1:
+				x = window.innerWidth + buffer;
+				y = Math.random() * window.innerHeight;
+				dx = -Math.random() * FLOAT_SPEED;
+				dy = (Math.random() - 0.5) * FLOAT_SPEED * 2;
+				break;
+			case 2:
+				x = Math.random() * window.innerWidth;
+				y = window.innerHeight + buffer;
+				dx = (Math.random() - 0.5) * FLOAT_SPEED * 2;
+				dy = -Math.random() * FLOAT_SPEED;
+				break;
+			case 3:
+				x = -buffer;
+				y = Math.random() * window.innerHeight;
+				dx = Math.random() * FLOAT_SPEED;
+				dy = (Math.random() - 0.5) * FLOAT_SPEED * 2;
+				break;
+		}
 
-    const srcIndex = imageSources.indexOf(src);
-    createFloater(src, x, y, dx, dy, srcIndex);
-  }
+		const srcIndex = imageSources.indexOf(src);
+		createFloater(src, x, y, dx, dy, srcIndex);
+	}
 
-  function animate() {
-    time += 1;
+	function animate() {
+		time += 1;
 
-    floaters.forEach(f => {
-      if (!f.paused) {
-        f.dx += (Math.random() - 0.5) * 0.01;
-        f.dy += (Math.random() - 0.5) * 0.01;
+		floaters.forEach(f => {
+			if (!f.paused) {
+				f.dx += (Math.random() - 0.5) * 0.01;
+				f.dy += (Math.random() - 0.5) * 0.01;
 
-        f.x += f.dx;
-        f.y += f.dy;
-      }
+				f.x += f.dx;
+				f.y += f.dy;
+			}
 
-      const wobbleX = Math.sin(time * WOBBLE_FREQ + f.phaseX) * WOBBLE_MAG;
-      const wobbleY = Math.cos(time * WOBBLE_FREQ + f.phaseY) * WOBBLE_MAG;
+			const wobbleX = Math.sin(time * WOBBLE_FREQ + f.phaseX) * WOBBLE_MAG;
+			const wobbleY = Math.cos(time * WOBBLE_FREQ + f.phaseY) * WOBBLE_MAG;
 
-      const imgX = f.x + wobbleX;
-      const imgY = f.y + wobbleY;
+			const imgX = f.x + wobbleX;
+			const imgY = f.y + wobbleY;
 
-      f.el.style.transform = `translate(${imgX}px, ${imgY}px)`;
+			f.el.style.transform = `translate(${imgX}px, ${imgY}px)`;
 
-      // Position caption below image with a small vertical gap
-      const rect = f.el.getBoundingClientRect();
-      const imgRect = f.el.getBoundingClientRect();
-      const captionRect = f.captionEl.getBoundingClientRect();
+			// Position caption below image with a small vertical gap
+			const rect = f.el.getBoundingClientRect();
+			const imgRect = f.el.getBoundingClientRect();
+			const captionRect = f.captionEl.getBoundingClientRect();
 
-      const captionMarginRight = 50; // adjust this value to control distance from right edge
+			const captionMarginRight = 50; // adjust this value to control distance from right edge
 
-      const captionX = imgX + imgRect.width - captionRect.width - captionMarginRight;
-      const captionY = imgY + imgRect.height + 6;
-      f.captionEl.style.transform = `translate(${captionX}px, ${captionY}px)`;
+			const captionX = imgX + imgRect.width - captionRect.width - captionMarginRight;
+			const captionY = imgY + imgRect.height + 6;
+			f.captionEl.style.transform = `translate(${captionX}px, ${captionY}px)`;
 
 
-      // Bounce logic
-      if (rect.left < -BOUNCE_MARGIN && f.dx < 0) f.dx *= -1;
-      if (rect.right > window.innerWidth + BOUNCE_MARGIN && f.dx > 0) f.dx *= -1;
-      if (rect.top < -BOUNCE_MARGIN && f.dy < 0) f.dy *= -1;
-      if (rect.bottom > window.innerHeight + BOUNCE_MARGIN && f.dy > 0) f.dy *= -1;
-    });
+			// Bounce logic
+			if (rect.left < -BOUNCE_MARGIN && f.dx < 0) f.dx *= -1;
+			if (rect.right > window.innerWidth + BOUNCE_MARGIN && f.dx > 0) f.dx *= -1;
+			if (rect.top < -BOUNCE_MARGIN && f.dy < 0) f.dy *= -1;
+			if (rect.bottom > window.innerHeight + BOUNCE_MARGIN && f.dy > 0) f.dy *= -1;
+		});
 
-    requestAnimationFrame(animate);
-  }
+		requestAnimationFrame(animate);
+	}
 
-  // Initial spawn of 4-6 images
-  const initialCount = 4 + Math.floor(Math.random() * 3);
+	// Initial spawn of 4-6 images
+	const initialCount = 4 + Math.floor(Math.random() * 3);
 
-  for (let i = 0; i < initialCount; i++) {
-    const src = imageSources[i % imageSources.length];
-    const imgWidth = Math.min(window.innerWidth * 0.45, 250); // match CSS
-    const imgHeight = imgWidth * 0.75; // estimate aspect ratio
+	for (let i = 0; i < initialCount; i++) {
+		const src = imageSources[i % imageSources.length];
+		const imgWidth = Math.min(window.innerWidth * 0.45, 250); // match CSS
+		const imgHeight = imgWidth * 0.75; // estimate aspect ratio
 
-    // Clamp spawn area so image is always fully visible
-    const x = Math.random() * (window.innerWidth - imgWidth);
-    const y = Math.random() * (window.innerHeight - imgHeight - 60 - 30);
-    const clampedX = Math.max(0, Math.min(x, window.innerWidth - imgWidth));
-    const clampedY = Math.max(0, Math.min(y, window.innerHeight - imgHeight - 60 - 30));
+		// Clamp spawn area so image is always fully visible
+		const x = Math.random() * (window.innerWidth - imgWidth);
+		const y = Math.random() * (window.innerHeight - imgHeight - 60 - 30);
+		const clampedX = Math.max(0, Math.min(x, window.innerWidth - imgWidth));
+		const clampedY = Math.max(0, Math.min(y, window.innerHeight - imgHeight - 60 - 30));
 
-    const dx = (Math.random() - 0.5) * FLOAT_SPEED * 2;
-    const dy = (Math.random() - 0.5) * FLOAT_SPEED * 2;
-    createFloater(src, clampedX, clampedY, dx, dy, i);
-  }
+		const dx = (Math.random() - 0.5) * FLOAT_SPEED * 2;
+		const dy = (Math.random() - 0.5) * FLOAT_SPEED * 2;
+		createFloater(src, clampedX, clampedY, dx, dy, i);
+	}
 
-  // Continuous spawning from edges
-  setInterval(() => {
-    const spawnCount = 1 + Math.floor(Math.random() * 4);
-    for (let i = 0; i < spawnCount; i++) {
-      spawnFromEdge();
-    }
-  }, SPAWN_INTERVAL);
+	// Continuous spawning from edges
+	setInterval(() => {
+		const spawnCount = 1 + Math.floor(Math.random() * 4);
+		for (let i = 0; i < spawnCount; i++) {
+			spawnFromEdge();
+		}
+	}, SPAWN_INTERVAL);
 
-  animate();
+	animate();
 
-   function toggleMobileMenu() {
-      const mobileMenu = document.getElementById('mobileMenu');
-      const hamburger = document.querySelector('.hamburger');
+	function toggleMobileMenu() {
+		const mobileMenu = document.getElementById('mobileMenu');
+		const hamburger = document.querySelector('.hamburger');
 
-      mobileMenu.classList.toggle('show');
-      hamburger.classList.toggle('active');
-    }
+		mobileMenu.classList.toggle('show');
+		hamburger.classList.toggle('active');
+	}
 
 
 // const footerBar = document.getElementById("footer-bar");
@@ -763,34 +759,33 @@ function createFloater(src, x, y, dx, dy, index) {
   // fly by logic
   
 const flybyImages = {
-  0: [ 'images/flyby/djiAir2s.png' ],
-  1: [ 'images/flyby/sphericalTargets.png' ],
-  2: [ 'images/flyby/hardHats.png', 'images/flyby/quest3.png'],
-  3: [ 'images/flyby/faroFocus.png', 'images/flyby/photogrammetryRig.png'],
-  4: [ 'images/flyby/groundTargets.png' ],
-
+	0: [ 'images/flyby/djiAir2s.png' ],
+	1: [ 'images/flyby/sphericalTargets.png' ],
+	2: [ 'images/flyby/hardHats.png', 'images/flyby/quest3.png'],
+	3: [ 'images/flyby/faroFocus.png', 'images/flyby/photogrammetryRig.png'],
+	4: [ 'images/flyby/groundTargets.png' ],
 };
 
 function launchFlyby(trackIndex) {
-  const container = document.getElementById("flyby-container");
-  const imagePool = flybyImages[trackIndex];
-  const imageSrc = imagePool[Math.floor(Math.random() * imagePool.length)];
+	const container = document.getElementById("flyby-container");
+	const imagePool = flybyImages[trackIndex];
+	const imageSrc = imagePool[Math.floor(Math.random() * imagePool.length)];
 
-  const img = document.createElement("img");
-  img.src = imageSrc;
-  img.className = `flyby flyby-track-${trackIndex}`;
-  img.style.left = "-200px";
+	const img = document.createElement("img");
+	img.src = imageSrc;
+	img.className = `flyby flyby-track-${trackIndex}`;
+	img.style.left = "-200px";
 
-  img.addEventListener('click', () => {
-    window.location.href = "equipment.html";
-  });
+	img.addEventListener('click', () => {
+		window.location.href = "equipment.html";
+	});
 
-  container.appendChild(img);
+	container.appendChild(img);
 
-  // Remove after animation ends
-  img.addEventListener('animationend', () => {
-    img.remove();
-  });
+	// Remove after animation ends
+	img.addEventListener('animationend', () => {
+		img.remove();
+	});
 }
 
 let flybyInterval = null;
@@ -800,52 +795,50 @@ let flybyInterval = null;
 let flybyTimeout = null;
 
 function startFlybySpawning() {
-  if (flybyInterval || flybyTimeout) return; // Already scheduled
+	if (flybyInterval || flybyTimeout) return; // Already scheduled
 
-  // First spawn after 10 seconds
-  flybyTimeout = setTimeout(() => {
-    if (document.visibilityState === 'visible') {
-      const track = Math.floor(Math.random() * 5 );
-      launchFlyby(track);
-    }
+	// First spawn after 10 seconds
+	flybyTimeout = setTimeout(() => {
+		if (document.visibilityState === 'visible') {
+			const track = Math.floor(Math.random() * 5 );
+			launchFlyby(track);
+		}
 
-    // Start recurring spawns every 65 seconds
-    flybyInterval = setInterval(() => {
-      if (document.visibilityState === 'visible') {
-        const track = Math.floor(Math.random() * 5 );
-        launchFlyby(track);
-      }
-    }, 40000);
-
-    flybyTimeout = null; // Clear timeout tracker
-
-  }, 1000);
+		// Start recurring spawns every 65 seconds
+		flybyInterval = setInterval(() => {
+			if (document.visibilityState === 'visible') {
+				const track = Math.floor(Math.random() * 5 );
+				launchFlyby(track);
+			}
+		}, 40000);
+		flybyTimeout = null; // Clear timeout tracker
+	}, 1000);
 }
 
 // Function to stop spawning flybys
 function stopFlybySpawning() {
-  clearInterval(flybyInterval);
-  flybyInterval = null;
+	clearInterval(flybyInterval);
+	flybyInterval = null;
 }
 
 // Watch for tab visibility changes
 document.addEventListener('visibilitychange', () => {
-  if (document.visibilityState === 'visible') {
-    startFlybySpawning();
-  } else {
-    stopFlybySpawning();
-  }
+	if (document.visibilityState === 'visible') {
+		startFlybySpawning();
+	} else {
+		stopFlybySpawning();
+	}
 });
 
 // Start spawning initially if page is visible
 if (document.visibilityState === 'visible') {
-  startFlybySpawning();
+	startFlybySpawning();
 }
 
 window.addEventListener('pageshow', function (event) {
-  if (event.persisted || performance.getEntriesByType("navigation")[0].type === "back_forward") {
-    location.reload();
-  }
+	if (event.persisted || performance.getEntriesByType("navigation")[0].type === "back_forward") {
+		location.reload();
+	}
 });
 
 </script>
