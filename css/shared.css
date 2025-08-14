@@ -197,8 +197,9 @@ font-weight: bold;
 
 /* Improve lightbox arrows for mobile */
 @media (max-width: 768px) {
+	/* smaller arrows */
 	.arrow {
-		font-size: 32px;        /* smaller arrows */
+		font-size: 32px;        
 		width: 36px;
 		height: 36px;
 		background: rgba(255, 255, 255, 0.7); /* semi-transparent background */
@@ -213,19 +214,11 @@ font-weight: bold;
 	.arrow.right {
 		right: 20%;
 	}
-	/*
-	.back-x {
-		top: 15px;
-		right: 15px;
-		width: 36px;
-		height: 36px;
-		font-size: 28px;
-		line-height: 36px; /* keep text vertically centered */
-	}
-	*/
+
 	.title {
-		font-size: 48px;
-		margin: 20px 30px 40px;
+		font-size: 14vw; /* x% of viewport width */
+		white-space: normal;
+		margin: 20px 30px 40px; /* match .line-and-text margins */
 	}
 
 	.line-and-text {

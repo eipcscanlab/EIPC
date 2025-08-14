@@ -208,7 +208,7 @@
 	/* image loop container */
 	.image-loop {
 		overflow: hidden;
-		height: 300;
+		height: 200;
 		width: 100%;
 		position: relative;
 		border-radius: 8px;
@@ -456,16 +456,22 @@
 		const firstClone = images[0].cloneNode(true);
 		loopContainer.appendChild(firstClone);
 
-		const imageHeights = [];
+		let imageHeights = [];
 
-		// Wait for all images to load so we can get correct heights
+		function calculateImageHeights() {
+			imageHeights = [];
+			document.querySelectorAll('.loop-images img').forEach(img => {
+				imageHeights.push(img.offsetHeight);
+			});
+		}
+
 		window.addEventListener('load', () => {
-			images.forEach(img => imageHeights.push(img.offsetHeight));
-			
-			// Add the cloned image's height
-			imageHeights.push(firstClone.offsetHeight);
-
+			calculateImageHeights();
 			startAutoScroll();
+		});
+
+		window.addEventListener('resize', () => {
+			calculateImageHeights();
 		});
 
 		function startAutoScroll() {
@@ -474,7 +480,7 @@
 
 				let offset = 0;
 				for (let i = 0; i < currentIndex; i++) {
-					offset += imageHeights[i] + 20; // Add margin-bottom (20px)
+					offset += imageHeights[i] + 20; // Add margin-bottom
 				}
 
 				loopContainer.style.transition = 'transform 1s ease-in-out';
@@ -485,15 +491,9 @@
 						loopContainer.style.transition = 'none';
 						loopContainer.style.transform = 'translateY(0)';
 						currentIndex = 0;
-					}, 1000); // Matches the transition duration
+					}, 1000); // Matches transition duration
 				}
 			}, 4000);
-		}
-
-		function toggleMobileMenu(button) {
-			const menu = document.getElementById('mobileMenu');
-			menu.classList.toggle('show');
-			button.classList.toggle('open');
 		}
 	</script>
 </body>

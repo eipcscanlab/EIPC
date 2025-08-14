@@ -1,544 +1,549 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>About - Empathy in Point Clouds</title>
-  <link rel="icon" href="images/icon.png" type="image/png">
-  <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      overflow-x: hidden;
-      overflow-y: scroll;
-      height: 100%;
-      font-family: 'Akzidenz Grotesk Light', sans-serif;
-      background: white;
-      scroll-behavior: smooth;
-    }
-    body {
-      margin: 0;
-      padding: 0;
-      min-height: 100%;
-      overflow-y: scroll; 
-      overflow-x: hidden;
-      font-family: 'Akzidenz Grotesk Light', sans-serif;
-      background: white;
-      scroll-behavior: smooth;
-    }
-    main {
-      height: auto !important;
-      max-height: none !important;
-      overflow: visible !important;
-    }
-    /* styling for the header title */
-    header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 60px;
-      background-color: white;
-      color: black;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0 20px;
-      z-index: 1000;
-    }
-    .header-title {
-      font-family: 'Akzidenz Grotesk Light Bold', sans-serif;
-      font-size: 24px;
-      height: 100%;
-      display: flex;
-      align-items: center;
-    }
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<title>About - Empathy in Point Clouds</title>
+	<link rel="icon" href="images/icon.png" type="image/png">
+	<style>
+		html, body {
+			margin: 0;
+			padding: 0;
+			overflow-x: hidden;
+			overflow-y: scroll;
+			height: 100%;
+			font-family: 'Akzidenz Grotesk Light', sans-serif;
+			background: white;
+			scroll-behavior: smooth;
+		}
+		body {
+			margin: 0;
+			padding: 0;
+			min-height: 100%;
+			overflow-y: scroll; 
+			overflow-x: hidden;
+			font-family: 'Akzidenz Grotesk Light', sans-serif;
+			background: white;
+			scroll-behavior: smooth;
+		}
+		main {
+			height: auto !important;
+			max-height: none !important;
+			overflow: visible !important;
+		}
+		/* styling for the header title */
+		header {
+			position: fixed;
+			top: 0;
+			left: 0;
+			right: 0;
+			height: 60px;
+			background-color: white;
+			color: black;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			padding: 0 20px;
+			z-index: 1000;
+		}
+		.header-title {
+			font-family: 'Akzidenz Grotesk Light Bold', sans-serif;
+			font-size: 24px;
+			height: 100%;
+			display: flex;
+			align-items: center;
+		}
 
-    /* styling for menu options on the right */
-    nav {
-      font-family: 'Akzidenz Grotesk Light Bold', sans-serif;
-      display: flex;
-      align-items: center;
-      gap: 15px;
-    }
-    nav a {
-      color: grey;
-      text-decoration: none;
-      font-weight: 700;
-      transition: color 0.3s;
-    }
-    nav a:hover,
-    nav a.active {
-      color: black;
-    }
+		/* styling for menu options on the right */
+		nav {
+			font-family: 'Akzidenz Grotesk Light Bold', sans-serif;
+			display: flex;
+			align-items: center;
+			gap: 15px;
+		}
+		nav a {
+			color: grey;
+			text-decoration: none;
+			font-weight: 700;
+			transition: color 0.3s;
+		}
+		nav a:hover,
+		nav a.active {
+			color: black;
+		}
 
-    /* styling for hamburger toggle icon */ 
-    .hamburger {
-      display: none;
-      flex-direction: column;
-      justify-content: center;
-      gap: 4px;
-      cursor: pointer;
-    }
-    .hamburger div {
-      width: 25px;
-      height: 3px;
-      background-color: black;
-      transition: all 0.3s ease;
-    }
-    .hamburger.active div:nth-child(1) {
-      transform: rotate(45deg) translate(5px, 5px);
-    }
-    .hamburger.active div:nth-child(2) {
-      opacity: 0;
-    }
-    .hamburger.active div:nth-child(3) {
-      transform: rotate(-45deg) translate(5px, -5px);
-    }
+		/* styling for hamburger toggle icon */ 
+		.hamburger {
+			display: none;
+			flex-direction: column;
+			justify-content: center;
+			gap: 4px;
+			cursor: pointer;
+		}
+		.hamburger div {
+			width: 25px;
+			height: 3px;
+			background-color: black;
+			transition: all 0.3s ease;
+		}
+		.hamburger.active div:nth-child(1) {
+			transform: rotate(45deg) translate(5px, 5px);
+		}
+		.hamburger.active div:nth-child(2) {
+			opacity: 0;
+		}
+		.hamburger.active div:nth-child(3) {
+			transform: rotate(-45deg) translate(5px, -5px);
+		}
 
-    /* styling for mobile view navigation menu */
-    .mobile-menu {
-      display: none;
-      position: fixed;
-      top: 60px;
-      left: 0;
-      width: 100%;
-      height: calc(100vh - 60px);
-      background-color: white;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
-      padding-top: 240px;
-      gap: 40px;
-      z-index: 999;
-    }
-    .mobile-menu.show {
-      display: flex;
-    }
-    .mobile-menu a {
-      font-family: 'Akzidenz Grotesk Light Bold', sans-serif;
-      font-size: 20px;
-      color: black;
-      text-decoration: none;
-      text-transform: uppercase;
-    }
+		/* styling for mobile view navigation menu */
+		.mobile-menu {
+			display: none;
+			position: fixed;
+			top: 60px;
+			left: 0;
+			width: 100%;
+			height: calc(100vh - 60px);
+			background-color: white;
+			flex-direction: column;
+			align-items: center;
+			justify-content: flex-start;
+			padding-top: 240px;
+			gap: 40px;
+			z-index: 999;
+		}
+		.mobile-menu.show {
+			display: flex;
+		}
+		.mobile-menu a {
+			font-family: 'Akzidenz Grotesk Light Bold', sans-serif;
+			font-size: 20px;
+			color: black;
+			text-decoration: none;
+			text-transform: uppercase;
+		}
 
-    /* styling for text sections */
-    section {
-      min-height: 70vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      opacity: 0;
-      transform: translateY(50px);
-      transition: opacity 0.8s ease, transform 0.8s ease;
-      will-change: transform, opacity;
-      padding: 100px 20px;
-      box-sizing: border-box;
-      visibility: hidden;
-      height: auto !important;
-      max-height: none !important;
-      overflow: visible !important;
-    }
-    section.in-view {
-      visibility: visible;
-      opacity: 1;
-      transform: translateY(0);
-    }
-    .about-text {
-      max-width: 800px;
-      text-align: left;
-      font-size: 18px;
-      line-height: 1.5;
-    }
-    #about {
-      padding-top: 200px;
-      padding-bottom: 40px; 
-    }
+		/* styling for text sections */
+		section {
+			min-height: 70vh;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			flex-direction: column;
+			opacity: 0;
+			transform: translateY(50px);
+			transition: opacity 0.8s ease, transform 0.8s ease;
+			will-change: transform, opacity;
+			padding: 100px 20px;
+			box-sizing: border-box;
+			visibility: hidden;
+			height: auto !important;
+			max-height: none !important;
+			overflow: visible !important;
+		}
+		section.in-view {
+			visibility: visible;
+			opacity: 1;
+			transform: translateY(0);
+		}
+		.about-text {
+			max-width: 800px;
+			text-align: left;
+			font-size: 18px;
+			line-height: 1.5;
+		}
+		#about {
+			padding-top: 200px;
+			padding-bottom: 40px; 
+		}
 
-    /* styling for team images section*/
-    .team-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 2rem;
-      width: 100%;
-      max-width: 1200px;
-      justify-items: center;
-      height: auto !important;
-      max-height: none !important;
-      overflow: visible !important;
-    }
-    .team-member img {
-      width: 100%;
-      border-radius: 10px;
-      transition: transform 0.3s;
-      max-width: 200px;
-      cursor: pointer;
-    }
-    .team-member:hover img {
-      transform: scale(1.05);
-    }
-    .member-name {
-      margin-top: 10px;
-      font-weight: bold;
-    }
-    .member-position {
-      color: #666;
-    }
+		/* styling for team images section*/
+		.team-grid {
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+			gap: 2rem;
+			width: 100%;
+			max-width: 1200px;
+			justify-items: center;
+			height: auto !important;
+			max-height: none !important;
+			overflow: visible !important;
+		}
+		.team-member img {
+			width: 100%;
+			border-radius: 10px;
+			transition: transform 0.3s;
+			max-width: 200px;
+			cursor: pointer;
+		}
+		.team-member:hover img {
+			transform: scale(1.05);
+		}
+		.member-name {
+			margin-top: 10px;
+			font-weight: bold;
+		}
+		.member-position {
+			color: #666;
+		}
 
-    /* styling for previous members sections */
-    .timeline-wrapper {
-      height: auto;
-      max-height: none;
-      overflow: visible;
-      padding-right: 0;
-    }
-    .timeline-horizontal {
-      display: flex;
-      gap: 30px;
-      min-width: 400px;
-    }
-    .timeline-item {
-      flex: 0 0 auto;
-      background: white;
-      padding: 10px;
-      border-radius: 12px;
-      min-width: 240px;
-      border: 0.5px solid #ccc;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
-      text-align: center;
-    }
-    .timeline-year {
-      font-family: 'Akzidenz Grotesk Roman', sans-serif;
-      font-size: 16px;
-    }
-    .timeline-item ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      font-size: 14px;
-    }
-    .timeline-item ul li {
-      margin-bottom: 4px;
-    }
-    #archive {
-      padding-top: 30px;
-    }
+		/* styling for previous members sections */
+		.timeline-wrapper {
+			height: auto;
+			max-height: none;
+			overflow: visible;
+			padding-right: 0;
+		}
+		.timeline-horizontal {
+			display: grid;
+			grid-template-columns: repeat(4, 1fr); /* 4 columns on full desktop */
+			gap: 30px;
+		}
+		.timeline-item {
+			flex: 1 1 calc(25% - 30px); /* 4 per row minus gap */
+			min-width: 240px; /* stop shrinking too far */
+			background: white;
+			padding: 10px;
+			border-radius: 12px;
+			border: 0.5px solid #ccc;
+			box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+			text-align: center;
+		}
+		.timeline-year {
+			font-family: 'Akzidenz Grotesk Roman', sans-serif;
+			font-size: 16px;
+		}
+		.timeline-item ul {
+			list-style: none;
+			padding: 0;
+			margin: 0;
+			font-size: 14px;
+		}
+		.timeline-item ul li {
+			margin-bottom: 4px;
+		}
+		#archive {
+			padding-top: 30px;
+		}
 
-    /* styling for bio pop up */
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 2000;
-      left: 0;
-      top: 0;
-      width: 100%;
-      overflow: hidden;
-      background-color: rgba(0,0,0,0.6);
-      height: auto !important;
-      max-height: none !important;
-      overflow: visible !important;
-    }
-    .modal-content {
-      background-color: #fff;
-      margin: 10% auto;
-      padding: 20px;
-      border-radius: 12px;
-      width: 80%;
-      max-width: 500px;
-      position: relative;
-    }
-    .close {
-      color: #aaa;
-      position: absolute;
-      right: 20px;
-      top: 10px;
-      font-size: 28px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-    .close:hover {
-      color: black;
-    }
-    .modal-content a {
-      color: black;
-      text-decoration: none;
-    }
-    .modal-content a:hover {
-      color: black;
-      text-decoration: underline;
-    }
+		/* styling for bio pop up */
+		.modal {
+			display: none;
+			position: fixed;
+			z-index: 2000;
+			left: 0;
+			top: 0;
+			width: 100%;
+			height: 100%; /* fill viewport height */
+			background-color: rgba(0,0,0,0.6);
+			overflow: auto; /* allow scrolling if content is taller than viewport */
+		}
+		.modal-content {
+			background-color: #fff;
+			margin: 10% auto;
+			padding: 20px;
+			border-radius: 12px;
+			width: 80%;
+			max-width: 500px;
+			position: relative;
+		}
+		.close {
+			color: #aaa;
+			position: absolute;
+			right: 20px;
+			top: 10px;
+			font-size: 28px;
+			font-weight: bold;
+			cursor: pointer;
+		}
+		.close:hover {
+			color: black;
+		}
+		.modal-content a {
+			color: black;
+			text-decoration: none;
+		}
+		.modal-content a:hover {
+			color: black;
+			text-decoration: underline;
+		}
 
-    /* animations styling */ 
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
+		/* animations styling */ 
+		@keyframes fadeInUp {
+			from {
+				opacity: 0;
+				transform: translateY(20px);
+			}
+			to {
+				opacity: 1;
+				transform: translateY(0);
+			}
+		}
 
-    /* font styling */ 
-    @font-face {
-      font-family: 'Akzidenz Grotesk Italic';
-      src: url('fonts/Akzidenz Grotesk Italic.woff2') format('woff2');
-      font-style: italic;
-    }
-    @font-face {
-      font-family: 'Akzidenz Grotesk Light Bold Italic';
-      src: url('fonts/Akzidenz Grotesk Light Bold Italic.woff2') format('woff2');
-      font-style: italic;
-      font-weight: bold;
-    }
-    @font-face {
-      font-family: 'Akzidenz Grotesk Light Bold';
-      src: url('fonts/Akzidenz Grotesk Light Bold.woff2') format('woff2');
-      font-weight: bold;
-    }
-    @font-face {
-      font-family: 'Akzidenz Grotesk Light Italic';
-      src: url('fonts/Akzidenz Grotesk Light Italic.woff2') format('woff2');
-      font-style: italic;
-    }
-    @font-face {
-      font-family: 'Akzidenz Grotesk Light';
-      src: url('fonts/Akzidenz Grotesk Light.woff2') format('woff2');
-    }
-    @font-face {
-      font-family: 'Akzidenz Grotesk Roman';
-      src: url('fonts/Akzidenz Grotesk Roman.woff2') format('woff2');
-      font-weight: bold;
-    }
+		/* font styling */ 
+		@font-face {
+			font-family: 'Akzidenz Grotesk Italic';
+			src: url('fonts/Akzidenz Grotesk Italic.woff2') format('woff2');
+			font-style: italic;
+		}
+		@font-face {
+			font-family: 'Akzidenz Grotesk Light Bold Italic';
+			src: url('fonts/Akzidenz Grotesk Light Bold Italic.woff2') format('woff2');
+			font-style: italic;
+			font-weight: bold;
+		}
+		@font-face {
+			font-family: 'Akzidenz Grotesk Light Bold';
+			src: url('fonts/Akzidenz Grotesk Light Bold.woff2') format('woff2');
+			font-weight: bold;
+		}
+		@font-face {
+			font-family: 'Akzidenz Grotesk Light Italic';
+			src: url('fonts/Akzidenz Grotesk Light Italic.woff2') format('woff2');
+			font-style: italic;
+		}
+		@font-face {
+			font-family: 'Akzidenz Grotesk Light';
+			src: url('fonts/Akzidenz Grotesk Light.woff2') format('woff2');
+		}
+		@font-face {
+			font-family: 'Akzidenz Grotesk Roman';
+			src: url('fonts/Akzidenz Grotesk Roman.woff2') format('woff2');
+			font-weight: bold;
+		}
 
-    /* media queries for device responsiveness */
-    @media (max-width: 768px) {
-      nav { display: none; }
-      .hamburger { display: flex; }
+		/* media queries for device responsiveness */
 
-      .timeline-horizontal {
-        flex-direction: column;
-        align-items: center;
-      }
-      .tic {
-        display: none;
-      }
-      .timeline-item {
-        width: 50%;
-        min-width: unset;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-      }
-    }
-  </style>
+		/* When the viewport is smaller (half desktop size), go to 2 columns */
+		@media (max-width: 1200px) {
+			.timeline-horizontal {
+				grid-template-columns: repeat(2, 1fr);
+			}
+		}
+		@media (max-width: 768px) {
+			nav { display: none; }
+			.hamburger { display: flex; }
+
+			.timeline-horizontal {
+				flex-direction: column;
+				align-items: center;
+			}
+			.tic {
+				display: none;
+			}
+			.timeline-item {
+				width: 50%;
+				min-width: unset;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+				text-align: center;
+			}
+		}
+	</style>
 </head>
 
 <body>
-  <div class="tic top-center"></div>
-  <div class="tic bottom-center"></div>
-  <div class="tic left-center"></div>
-  <div class="tic right-center"></div>
-  <header>
-    <a href="index.html" style="text-decoration: none; color: black;">
-      <h1 class="header-title">Empathy in Point Clouds</h1>
-    </a>
-    <nav>
-      <a href="projects.html">PROJECTS</a>
-      <a href="press.html">PRESS</a>
-      <a href="about.html" class="active">ABOUT</a>
-      <a href="contact.html">CONTACT</a>
-    </nav>
-    <div class="hamburger" id="hamburger" onclick="toggleMenu()">
-      <div></div>
-      <div></div>
-      <div></div>
-    </div>
-    <div class="mobile-menu" id="mobileMenu">
-      <a href="projects.html">PROJECTS</a>
-      <a href="press.html">PRESS</a>
-      <a href="about.html" class="active">ABOUT</a>
-      <a href="contact.html">CONTACT</a>
-    </div>
-  </header>
+	<div class="tic top-center"></div>
+	<div class="tic bottom-center"></div>
+	<div class="tic left-center"></div>
+	<div class="tic right-center"></div>
+	<header>
+		<a href="index.html" style="text-decoration: none; color: black;">
+			<h1 class="header-title">Empathy in Point Clouds</h1>
+		</a>
+		<nav>
+			<a href="projects.html">PROJECTS</a>
+			<a href="press.html">PRESS</a>
+			<a href="about.html" class="active">ABOUT</a>
+			<a href="contact.html">CONTACT</a>
+		</nav>
+		<div class="hamburger" id="hamburger" onclick="toggleMenu()">
+			<div></div>
+			<div></div>
+			<div></div>
+		</div>
+		<div class="mobile-menu" id="mobileMenu">
+			<a href="projects.html">PROJECTS</a>
+			<a href="press.html">PRESS</a>
+			<a href="about.html" class="active">ABOUT</a>
+			<a href="contact.html">CONTACT</a>
+		</div>
+	</header>
 
-  <main>
-    <section id="about">
-      <div class="about-text">
-        <h2>About EIPC</h2>
-        <p>Empathy in Point-Clouds [EIPC] is a faculty-student research project seeking to redefine the terms for creating radically accessible and inclusive architecture. From buildings and environments to digital infrastructure and urban technologies, the EIPC team utilizes Unreal Engine and LiDAR to develop workflows for immersive empathy-driven design.</p>
-        <p>We prototype, test, and validate complex design methodologies on the UM campus to navigate imaginative worlding processes. The meta-verse offers an ideal site to reposition architecture within Spatial Justice ethics. Our methods challenge standard LiDAR use, promoting data curation that animates the urban imaginary vividly.</p>
-      </div>
-    </section>
+	<main>
+		<section id="about">
+			<div class="about-text">
+				<h2>About EIPC</h2>
+				<p>Empathy in Point-Clouds [EIPC] is a faculty-student research project seeking to redefine the terms for creating radically accessible and inclusive architecture. From buildings and environments to digital infrastructure and urban technologies, the EIPC team utilizes Unreal Engine and LiDAR to develop workflows for immersive empathy-driven design.</p>
+				<p>We prototype, test, and validate complex design methodologies on the UM campus to navigate imaginative worlding processes. The meta-verse offers an ideal site to reposition architecture within Spatial Justice ethics. Our methods challenge standard LiDAR use, promoting data curation that animates the urban imaginary vividly.</p>
+			</div>
+		</section>
 
-    <section id="team">
-      <h2>Our Team</h2>
-      <div class="team-grid">
-        <div class="team-member">
-          <img src="images/dawn-headshot.png" alt="Dawn Gilpin">
-          <div class="member-name">Dawn Gilpin</div>
-          <div class="member-position">EIPC Founder</div>
-        </div>
-        <div class="team-member">
-          <img src="images/robert-headshot.JPG" alt="Robert Adams">
-          <div class="member-name">Robert Adams</div>
-          <div class="member-position">EIPC Founder</div>
-        </div>
-        <div class="team-member">
-          <img src="images/mardy-headshot.JPG" alt="Mardy Hillengas">
-          <div class="member-name">Mardy Hillengas</div>
-          <div class="member-position">EIPC Director</div>
-        </div>
-        <div class="team-member">
-          <img src="images/celine-headshot.JPG" alt="Celine Shaji">
-          <div class="member-name">Celine Shaji</div>
-          <div class="member-position">Research Assistant</div>
-        </div>
-        <div class="team-member">
-          <img src="images/roy-headshot.JPG" alt="Roy Wu">
-          <div class="member-name">Roy Wu</div>
-          <div class="member-position">Research Assistant</div>
-        </div>
-      </div>
-    </section>
+		<section id="team">
+		<h2>Our Team</h2>
+			<div class="team-grid">
+				<div class="team-member">
+					<img src="images/dawn-headshot.png" alt="Dawn Gilpin">
+					<div class="member-name">Dawn Gilpin</div>
+					<div class="member-position">EIPC Founder</div>
+				</div>
+				<div class="team-member">
+					<img src="images/robert-headshot.JPG" alt="Robert Adams">
+					<div class="member-name">Robert Adams</div>
+					<div class="member-position">EIPC Founder</div>
+				</div>
+				<div class="team-member">
+					<img src="images/mardy-headshot.JPG" alt="Mardy Hillengas">
+					<div class="member-name">Mardy Hillengas</div>
+					<div class="member-position">EIPC Director</div>
+				</div>
+				<div class="team-member">
+					<img src="images/celine-headshot.JPG" alt="Celine Shaji">
+					<div class="member-name">Celine Shaji</div>
+					<div class="member-position">Research Assistant</div>
+				</div>
+				<div class="team-member">
+					<img src="images/roy-headshot.JPG" alt="Roy Wu">
+					<div class="member-name">Roy Wu</div>
+					<div class="member-position">Research Assistant</div>
+				</div>
+			</div>
+		</section>
 
-    <section id="archive">
-      <h2>Previous Members</h2>
-      <div class="timeline-wrapper">
-        <div class="timeline-horizontal">
-          <div class="timeline-item animate">
-          <h4 class="timeline-year">2024</h4>
-          <ul>
-            <li>John Spraberry</li>
-            <li>Matthew Mansour</li>
-            <li>Charlotte Lee</li>
-            <li>Ming Chen</li>
-          </ul>
-        </div>
-        <div class="timeline-item animate">
-          <h4 class="timeline-year">2023</h4>
-          <ul>
-            <li>Qilmeg Doudatcz</li>
-            <li>Edward Rapa</li>
-            <li>Dylan Ling</li>
-            <li>Lili Omilian</li>
-            <li>Junde Song</li>
-          </ul>
-        </div>
-        <div class="timeline-item animate">
-          <h4 class="timeline-year">2022</h4>
-          <ul>
-            <li>Yipeng Lin</li>
-            <li>Heming Huang</li>
-            <li>Jiangyue Mao</li>
-            <li>Andrew Border</li>
-            <li>Dak Daruri</li>
-            <li>Sophia Chen</li>
-            <li>Matt Priskorn</li>
-            <li>Xin Li</li>
-            <li>Sang Won Kang</li>
-            <li>Eden Boes</li>
-            <li>Grieta Blaka</li>
-            <li>Nicole Tooley</li>
-            <li>Jim Benjey</li>
-          </ul>
-        </div>
-        <div class="timeline-item animate">
-          <h4 class="timeline-year">2021</h4>
-          <ul>
-            <li>Nellie Shih</li>
-            <li>Ankita Mahajan</li>
-            <li>Karun Ellango</li>
-            <li>Benjamin Rossano</li>
-          </ul>
-        </div>
-        </div>
-      </div>
-    </section>
-  </main>
+		<section id="archive">
+			<h2>Previous Members</h2>
+			<div class="timeline-wrapper">
+				<div class="timeline-horizontal">
+					<div class="timeline-item animate">
+						<h4 class="timeline-year">2024</h4>
+						<ul>
+							<li>John Spraberry</li>
+							<li>Matthew Mansour</li>
+							<li>Charlotte Lee</li>
+							<li>Ming Chen</li>
+						</ul>
+					</div>
+					<div class="timeline-item animate">
+						<h4 class="timeline-year">2023</h4>
+						<ul>
+							<li>Qilmeg Doudatcz</li>
+							<li>Edward Rapa</li>
+							<li>Dylan Ling</li>
+							<li>Lili Omilian</li>
+							<li>Junde Song</li>
+						</ul>
+					</div>
+					<div class="timeline-item animate">
+						<h4 class="timeline-year">2022</h4>
+						<ul>
+							<li>Yipeng Lin</li>
+							<li>Heming Huang</li>
+							<li>Jiangyue Mao</li>
+							<li>Andrew Border</li>
+							<li>Dak Daruri</li>
+							<li>Sophia Chen</li>
+							<li>Matt Priskorn</li>
+							<li>Xin Li</li>
+							<li>Sang Won Kang</li>
+							<li>Eden Boes</li>
+							<li>Grieta Blaka</li>
+							<li>Nicole Tooley</li>
+							<li>Jim Benjey</li>
+						</ul>
+					</div>
+					<div class="timeline-item animate">
+						<h4 class="timeline-year">2021</h4>
+						<ul>
+							<li>Nellie Shih</li>
+							<li>Ankita Mahajan</li>
+							<li>Karun Ellango</li>
+							<li>Benjamin Rossano</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</section>
+	</main>
 
-  <div id="teamModal" class="modal">
-    <div class="modal-content">
-      <span class="close">&times;</span>
-      <h2 id="modalName"></h2>
-      <h4 id="modalPosition"></h4>
-      <p>Email: <a href="#" id="modalEmail"></a></p>
-      <p id="modalBio"></p>
-    </div>
-  </div>
+	<div id="teamModal" class="modal">
+		<div class="modal-content">
+			<span class="close">&times;</span>
+			<h2 id="modalName"></h2>
+			<h4 id="modalPosition"></h4>
+			<p>Email: <a href="#" id="modalEmail"></a></p>
+			<p id="modalBio"></p>
+		</div>
+	</div>
 
-  <script>
-    function toggleMenu() {
-      const menu = document.getElementById('mobileMenu');
-      const hamburger = document.getElementById('hamburger');
-      menu.classList.toggle('show');
-      hamburger.classList.toggle('active');
-    }
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('in-view');
-        }
-      });
-    }, { threshold: 0.3 });
-    document.querySelectorAll('section').forEach(el => observer.observe(el));
+	<script>
+		function toggleMenu() {
+			const menu = document.getElementById('mobileMenu');
+			const hamburger = document.getElementById('hamburger');
+			menu.classList.toggle('show');
+			hamburger.classList.toggle('active');
+		}
+		const observer = new IntersectionObserver((entries) => {
+			entries.forEach(entry => {
+				if (entry.isIntersecting) {
+					entry.target.classList.add('in-view');
+				}
+			});
+		}, { threshold: 0.3 });
+		document.querySelectorAll('section').forEach(el => observer.observe(el));
 
-    const teamMembers = {
-      "Dawn Gilpin": {
-        position: "EIPC Founder",
-        email: "dgilpin@umich.edu",
-        bio: "Dawn Gilpin [M.Arch. SCI-Arc] is Lecturer IV in Architecture at the University of Michigan, Taubman College of Architecture and Urban Planning, where she teaches graduate design studios and courses in analytical drawing and survey methods. Before her appointment at the University of Michigan, she taught architecture at the University of Minnesota, where she co-directed a semester abroad in Oaxaca, Mexico, and co-designed the exhibition The Home Show: Architecture Studio on Housing at the Walker Art Center in Minneapolis. At the University of Michigan, she is a multiple-year recipient of the Donna Salzer Award for Teaching Excellence. Gilpin’s Wallenberg Studio, “The Radical and The Preposterous: Mind the Gap” was awarded the national Architect Studio Prize in 2016."
-      },
-      "Robert Adams": {
-        position: "EIPC Founder",
-        email: "robadams@umich.edu",
-        bio: "Robert Adams [M.Arch. SCI-Arc] is an artist, designer, and Associate Professor of Architecture at Taubman College, the Stamps School of Art & Design, and the Digital Studies Institute at the University of Michigan. Additionally, Robert directs the University of Michigan Initiative on Disability Studies and is an Arts & Humanities Scholar at the National Center for Institutional Diversity. Robert’s research focuses on the interplay between art, architecture, and design through disability culture, civic infrastructure, and responsive environments."
-      },
-      "Mardy Hillengas": {
-        position: "EIPC Director",
-        email: "mardyh@umich.edu",
-        bio: "Mardy Hillengas is the Director of the EIPC Scan-Lab at the University of Michigan. Her research focuses on using reality capture technologies including LiDAR, photogrammetry and radiance fields to document culturally significant sites and bring immersive visualization to the stories those sites hold."
-      },
-      "Celine Shaji": {
-        position: "Research Assistant",
-        email: "cshaji@umich.edu",
-        bio: "Celine Shaji is an undergraduate researcher on the Empathy in Point Clouds team at the University of Michigan. She is pursuing a degree in Architecture with a minor in UX Design, focusing on website development and hand scanning. Beyond research, Celine is actively involved in music and photography student organizations, exploring the intersections of visual and auditory storytelling. She is passionate about the narrative potential of architecture and its ability to shape human experience."
-      },
-      "Roy Wu": {
-        position: "Research Assistant",
-        email: "roywx@umich.edu",
-        bio: "n/a"
-      }
-    };
+		const teamMembers = {
+			"Dawn Gilpin": {
+				position: "EIPC Founder",
+				email: "dgilpin@umich.edu",
+				bio: "Dawn Gilpin [M.Arch. SCI-Arc] is Lecturer IV in Architecture at the University of Michigan, Taubman College of Architecture and Urban Planning, where she teaches graduate design studios and courses in analytical drawing and survey methods. Before her appointment at the University of Michigan, she taught architecture at the University of Minnesota, where she co-directed a semester abroad in Oaxaca, Mexico, and co-designed the exhibition The Home Show: Architecture Studio on Housing at the Walker Art Center in Minneapolis. At the University of Michigan, she is a multiple-year recipient of the Donna Salzer Award for Teaching Excellence. Gilpin’s Wallenberg Studio, “The Radical and The Preposterous: Mind the Gap” was awarded the national Architect Studio Prize in 2016."
+			},
+			"Robert Adams": {
+				position: "EIPC Founder",
+				email: "robadams@umich.edu",
+				bio: "Robert Adams [M.Arch. SCI-Arc] is an artist, designer, and Associate Professor of Architecture at Taubman College, the Stamps School of Art & Design, and the Digital Studies Institute at the University of Michigan. Additionally, Robert directs the University of Michigan Initiative on Disability Studies and is an Arts & Humanities Scholar at the National Center for Institutional Diversity. Robert’s research focuses on the interplay between art, architecture, and design through disability culture, civic infrastructure, and responsive environments."
+			},
+			"Mardy Hillengas": {
+				position: "EIPC Director",
+				email: "mardyh@umich.edu",
+				bio: "Mardy Hillengas is the Director of the EIPC Scan-Lab at the University of Michigan. Her research focuses on using reality capture technologies including LiDAR, photogrammetry and radiance fields to document culturally significant sites and bring immersive visualization to the stories those sites hold."
+			},
+			"Celine Shaji": {
+				position: "Research Assistant",
+				email: "cshaji@umich.edu",
+				bio: "Celine Shaji is an undergraduate researcher on the Empathy in Point Clouds team at the University of Michigan. She is pursuing a degree in Architecture with a minor in UX Design, focusing on website development and hand scanning. Beyond research, Celine is actively involved in music and photography student organizations, exploring the intersections of visual and auditory storytelling. She is passionate about the narrative potential of architecture and its ability to shape human experience."
+			},
+			"Roy Wu": {
+				position: "Research Assistant",
+				email: "roywx@umich.edu",
+				bio: "n/a"
+			}
+		};
 
-    const modal = document.getElementById("teamModal");
-    const modalName = document.getElementById("modalName");
-    const modalPosition = document.getElementById("modalPosition");
-    const modalEmail = document.getElementById("modalEmail");
-    const modalBio = document.getElementById("modalBio");
-    const closeBtn = document.getElementsByClassName("close")[0];
+		const modal = document.getElementById("teamModal");
+		const modalName = document.getElementById("modalName");
+		const modalPosition = document.getElementById("modalPosition");
+		const modalEmail = document.getElementById("modalEmail");
+		const modalBio = document.getElementById("modalBio");
+		const closeBtn = document.getElementsByClassName("close")[0];
 
-    document.querySelectorAll(".team-member img").forEach(img => {
-      img.addEventListener("click", () => {
-        const name = img.nextElementSibling.textContent;
-        const data = teamMembers[name];
-        if (data) {
-          modalName.textContent = name;
-          modalPosition.textContent = data.position;
-          modalEmail.textContent = data.email;
-          modalEmail.href = "mailto:" + data.email;
-          modalBio.textContent = data.bio;
-          modal.style.display = "block";
-        }
-      });
-    });
-    closeBtn.onclick = () => modal.style.display = "none";
-    window.onclick = e => { if (e.target == modal) modal.style.display = "none"; };
-  </script>
+		document.querySelectorAll(".team-member img").forEach(img => {
+			img.addEventListener("click", () => {
+				const name = img.nextElementSibling.textContent;
+				const data = teamMembers[name];
+				if (data) {
+					modalName.textContent = name;
+					modalPosition.textContent = data.position;
+					modalEmail.textContent = data.email;
+					modalEmail.href = "mailto:" + data.email;
+					modalBio.textContent = data.bio;
+					modal.style.display = "block";
+				}
+			});
+		});
+		closeBtn.onclick = () => modal.style.display = "none";
+		window.onclick = e => { if (e.target == modal) modal.style.display = "none"; };
+	</script>
 </body>
 </html>
