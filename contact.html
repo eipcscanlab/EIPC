@@ -1,506 +1,458 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-	<title>Contact - Empathy in Point Clouds</title>
-	<link rel="icon" href="images/icon.png" type="image/png">
-	<link rel="preconnect" href="https://www.google.com">
-	<link rel="preconnect" href="https://maps.googleapis.com">
-	<link rel="dns-prefetch" href="https://www.google.com">
-	<link rel="dns-prefetch" href="https://maps.googleapis.com">
-	<script src="https://kit.fontawesome.com/yourkitid.js" crossorigin="anonymous"></script>
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-	
-	<style>
-	body {
-		margin: 0;
-		background: #f4f4f4;
-		font-family: 'Akzidenz Grotesk Light', sans-serif;
-		overflow-x: hidden;
-	}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact - Empathy in Point Clouds</title>
+  <link rel="icon" href="images/icon.png" type="image/png">
+  <link rel="preconnect" href="https://www.google.com">
+  <link rel="preconnect" href="https://maps.googleapis.com">
+  <link rel="dns-prefetch" href="https://www.google.com">
+  <link rel="dns-prefetch" href="https://maps.googleapis.com">
+  <script src="https://kit.fontawesome.com/yourkitid.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body {
+      margin: 0;
+      background: #f4f4f4;
+      font-family: 'Akzidenz Grotesk Light', sans-serif;
+      overflow-x: hidden;
+    }
 
-	/* styling for the header title */
-	header {
-		position: fixed;
-		top: 0;
-		left: 0; 
-		right: 0;
-		height: 60px;
-		background-color: white;
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		padding: 0 20px;
-		z-index: 1001;
-	}
-	.header-title {
-		font-family: 'Akzidenz Grotesk Light Bold', sans-serif;
-		font-size: 24px;
-		text-decoration: none;
-		color: black;
-	}
+    /* styling for the header title */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0; 
+      right: 0;
+      height: 60px;
+      background-color: white;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 20px;
+      z-index: 1001;
+    }
+    .header-title {
+      font-family: 'Akzidenz Grotesk Light Bold', sans-serif;
+      font-size: 24px;
+      text-decoration: none;
+      color: black;
+    }
 
-	/* styling for menu options on the right */
-	nav {
-		display: flex;
-		gap: 15px;
-		font-family: 'Akzidenz Grotesk Light Bold', sans-serif;
-	}
-	nav a {
-		color: grey;
-		text-decoration: none;
-		font-weight: 700;
-	}
-	nav a:hover,
-	nav a.active {
-		color: black;
-	}
+    /* styling for menu options on the right */
+    nav {
+      display: flex;
+      gap: 15px;
+      font-family: 'Akzidenz Grotesk Light Bold', sans-serif;
+    }
+    nav a {
+      color: grey;
+      text-decoration: none;
+      font-weight: 700;
+    }
+    nav a:hover,
+    nav a.active {
+      color: black;
+    }
 
-	/* styling for hamburger toggle icon */ 
-	.hamburger {
-		display: none;
-		flex-direction: column;
-		justify-content: center;
-		gap: 4px;
-		cursor: pointer;
-	}
-	.hamburger div {
-		width: 25px;
-		height: 3px;
-		background-color: black;
-		transition: all 0.3s ease;
-	}
-	.hamburger.active div:nth-child(1) {
-		transform: rotate(45deg) translate(5px, 5px);
-	}
-	.hamburger.active div:nth-child(2) {
-		opacity: 0;
-	}
-	.hamburger.active div:nth-child(3) {
-		transform: rotate(-45deg) translate(5px, -5px);
-	}
+    /* styling for hamburger toggle icon */ 
+    .hamburger {
+      display: none;
+      cursor: pointer;
+      width: 30px;
+      height: 25px;
+      position: relative;
+      z-index: 1002;
+    }
+    .hamburger div {
+      position: absolute;
+      height: 3px;
+      width: 25px;
+      background: black;
+      transition: 0.4s ease;
+      left: 0;
+    }
+    .hamburger div:nth-child(1) { top: 0; }
+    .hamburger div:nth-child(2) { top: 8px; }
+    .hamburger div:nth-child(3) { top: 16px; }
+    .hamburger.open div:nth-child(1) { transform: rotate(45deg); top: 11px; }
+    .hamburger.open div:nth-child(2) { opacity: 0; }
+    .hamburger.open div:nth-child(3) { transform: rotate(-45deg); top: 11px; }
 
-	/* styling for mobile view navigation menu */
-	.mobile-menu {
-		display: none;
-		position: fixed;
-		top: 60px;
-		left: 0;
-		width: 100%;
-		height: calc(100vh - 60px);
-		background-color: white;
-		flex-direction: column;
-		align-items: center;
-		justify-content: flex-start;
-		padding-top: 240px;
-		gap: 40px;
-		z-index: 999;
-	}
-	.mobile-menu.show {
-		display: flex;
-	}
-	.mobile-menu a {
-		font-family: 'Akzidenz Grotesk Light Bold', sans-serif;
-		font-size: 20px;
-		color: black;
-		text-decoration: none;
-		text-transform: uppercase;
-	}
+    /* styling for mobile view navigation menu */
+    .mobile-menu {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      width: 100%;
+      background: white;
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+    .mobile-menu.show { display: flex; }
+    .mobile-menu a {
+      margin: 20px 0;
+      font-size: 20px;
+      color: black;
+      text-decoration: none;
+      font-family: 'Akzidenz Grotesk Light Bold', sans-serif;
+      text-transform: uppercase;
+    }
 
-	/* contact columns */
-	.contact-grid {
-		flex-wrap: wrap;
-		display: flex;
-		gap: 60px;
-		justify-content: center;
-		padding: 160px 40px 60px;
-		max-width: 1300px;
-		margin: 0 auto;
-		background: #f4f4f4;
-	}
-	.column {
-		flex: 1;
-		font-size: 16px;
-		color: black;
-		font-family: 'Akzidenz Grotesk Light', sans-serif;
-		display: flex;
-		flex-direction: column;
-		align-items: flex-start;
-		gap: 15px;
-		min-width: 280px;
-		max-width: 100%;
-		box-sizing: border-box;
-	}
-	.contact-info h2, .studio-info h2, .follow-info h2 {
-		font-family: 'Akzidenz Grotesk Light Bold', sans-serif;
-		font-size: 18px;
-		margin-bottom: 20px;
-		align-self: flex-start;
-	}
-	a {
-		color: black;
-		text-decoration: none;
-	}
-	a:hover {
-		text-decoration: underline;
-	}
+    /* contact columns */
+    .contact-grid {
+      display: flex;
+      gap: 60px;
+      justify-content: center;
+      padding: 160px 40px 60px;
+      max-width: 1300px;
+      margin: 0 auto;
+      background: #f4f4f4;
+    }
+    .column {
+      flex: 1;
+      font-size: 16px;
+      color: black;
+      font-family: 'Akzidenz Grotesk Light', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 15px;
+    }
+    .contact-info h2, .studio-info h2, .follow-info h2 {
+      font-family: 'Akzidenz Grotesk Light Bold', sans-serif;
+      font-size: 18px;
+      margin-bottom: 20px;
+      align-self: flex-start;
+    }
+    a {
+      color: black;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
 
-	/* Uniform container for the content below original columns */
-	.content-box {
-		width: 100%;
-		height: 320px; 
-		border-radius: 8px;
-		padding: 15px;
-		box-sizing: border-box;
-		overflow: hidden;
-		display: flex;
-		flex-direction: column;
-	}
 
-	/* Email form styling */
-	form {
-		display: flex;
-		flex-direction: column;
-		gap: 12px;
-		height: 100%;
-		border-radius: 8px;
-		background-color: #f4f4f4;
-	}
-	form label {
-		font-weight: 600;
-	}
-	form input, form textarea {
-		font-family: 'Akzidenz Grotesk Light', sans-serif;
-		font-size: 14px;
-		padding: 8px;
-		border: 1px solid #ccc;
-		border-radius: 4px;
-		resize: vertical;
-		width: 100%;
-		max-width: 100%;
-	}
-	form textarea {
-		height: 160px; 
-	}
-	form button {
-		font-family: 'Akzidenz Grotesk Light', sans-serif;
-		font-size: 14px;
-		padding: 10px;
-		border: 1px solid #ccc;
-		border-radius: 4px;
-		resize: vertical;
-		width: 318px;
-		cursor: pointer;
-	}
-	form button:hover {
-		text-decoration: underline;
-	}
+    /* Uniform container for the content below original columns */
+    .content-box {
+      width: 100%;
+      height: 320px; 
+      border-radius: 8px;
+      padding: 15px;
+      box-sizing: border-box;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
 
-	/* Google Map iframe styling */
-	iframe {
-		border: none;
-		border-radius: 8px;
-		width: 300px;
-		height: 700px;
-	}
-	.map-box {
-		margin-top: 45px; /* or adjust the value to your liking */
-	}
+    /* Email form styling */
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      height: 100%;
+      border-radius: 8px;
+      background-color: #f4f4f4;
+    }
+    form label {
+      font-weight: 600;
+    }
+    form input, form textarea {
+      font-family: 'Akzidenz Grotesk Light', sans-serif;
+      font-size: 14px;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      resize: vertical;
+      width: 300px;
+    }
+    form textarea {
+      height: 160px; 
+    }
+    form button {
+      font-family: 'Akzidenz Grotesk Light', sans-serif;
+      font-size: 14px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      resize: vertical;
+      width: 318px;
+      cursor: pointer;
+    }
+    form button:hover {
+      text-decoration: underline;
+    }
 
-	/* image loop container */
-	.image-loop {
-		overflow: hidden;
-		height: 200;
-		width: 100%;
-		position: relative;
-		border-radius: 8px;
-	}
-	.loop-images {
-		  display: flex;
-		  flex-direction: column;
-		  height: auto;
-	}
-	.loop-images img {
-		flex-shrink: 0;
-		height: auto;
-		margin-bottom: 20px;
-		object-fit: cover;
-		width: 100%;
-		border-radius: 8px;
-	}
+    /* Google Map iframe styling */
+    iframe {
+      border: none;
+      border-radius: 8px;
+      width: 300px;
+      height: 700px;
+    }
+    .map-box {
+      margin-top: 45px;
+    }
 
-	/* animation styling */
-	@keyframes scrollHorizontal {
-		0% {
-			transform: translateX(0);
-		}
-		100% {
-			transform: translateX(-50%);
-		}
-	}
+    /* image loop container */
+    .image-loop {
+      overflow: hidden;
+      height: 100%;
+      width: 100%;
+      position: relative;
+      border-radius: 8px;
+    }
+    .loop-images {
+      display: flex;
+      flex-direction: column;
+      animation: scrollLoop 6s linear infinite;
+      height: 100%;
+    }
+    .loop-images img {
+      flex-shrink: 0;
+      height: 200px;
+      margin-bottom: 20px;
+      object-fit: cover;
+      width: 300px;
+      border-radius: 8px;
+    }
 
-	@media (max-width: 768px) {
-	nav {
-		display: none;
-	}
-	.hamburger {
-		display: flex;
-	}
-	.mobile-menu.show {
-		display: flex;
-	}
-	.header-title {
-		font-size: 24px;
-	}
-	.mobile-menu a {
-		font-size: 18px;
-		margin: 15px 0;
-	}
-	.contact-grid {
-		flex-wrap: wrap;
-		flex-direction: column;
-		gap: 60px;
-		padding: 140px 20px 40px;
-		align-items: center;
-	}
-	.column {
-		width: 100%;
-		max-width: 90%;
-		align-items: center;
-		text-align: center;
-		box-sizing: border-box;
-	}
-	.column h2 {
-		align-self: center;
-		text-align: center;
+    /* animation styling */
+    @keyframes scrollLoop {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-220px); }
+    }
+    @keyframes scrollHorizontal {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(-50%);
+      }
+    }
 
-		.content-box {
-			width: 100%;
-			max-width: 360px;
-			height: auto;
-			padding: 15px 0;
-			display: flex;
-			flex-direction: column;
-			align-items: center;
-		}
-		form {
-			align-items: center;
-			width: 300px;
-		}
-		form input,
-			form textarea{
-			width: 100%;
-			max-width: 100%;
-		}
-		.mobile-hidden {
-			display: none;
-		}
-		iframe {
-			width: 100%;
-			max-width: 100%;
-			height: 400px;
-		}
-		.image-loop {
-			overflow: hidden;
-			max-width: 320px;
-			width: 100%;
-			height: auto;
-			border-radius: 8px;
-			position: relative;
-		}
+    @media (max-width: 768px) {
+      nav {
+        display: none;
+      }
+      .hamburger {
+        display: flex;
+      }
+      .mobile-nav.show {
+        display: flex;
+      }
+      .header-title {
+        font-size: 24px;
+      }
+      .mobile-menu a {
+        font-size: 18px;
+        margin: 15px 0;
+      }
+      .contact-grid {
+        flex-direction: column;
+        gap: 60px;
+        padding: 140px 20px 40px;
+        align-items: center;
+      }
+      .column {
+        width: 100%;
+        max-width: 90%;
+        align-items: center;
+        text-align: center;
+      }
+      .column h2 {
+        align-self: center;
+        text-align: center;
+      }
+      .content-box {
+        width: 100%;
+        max-width: 360px;
+        height: auto;
+        padding: 15px 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      form {
+        align-items: center;
+        width: 300px;
+      }
+      form input,
+      form textarea{
+        width: 100%;
+        max-width: 300px;
+      }
+      .mobile-hidden {
+        display: none;
+      }
+      iframe {
+        width: 100%;
+        max-width: 320px;
+        height: 400px;
+      }
+      .image-loop {
+        overflow: hidden;
+        max-width: 320px;
+        width: 100%;
+        height: auto;
+        border-radius: 8px;
+        position: relative;
+      }
+      .loop-images {
+        display: flex;
+        flex-direction: row;
+        animation: scrollHorizontal 12s linear infinite;
+        gap: 10px;
+        width: max-content;
+      }
+      .loop-images img {
+        width: 160px;
+        height: auto;
+        flex-shrink: 0;
+        object-fit: cover;
+        border-radius: 8px;
+      }
+    }
 
-		.loop-images {
-			display: flex;
-			flex-direction: column;
-			animation: transform 1s ease-in-out;
-			gap: 10px;
-			width: max-content;
-		}
+    /* font styling */ 
+    @font-face {
+      font-family: 'Akzidenz Grotesk Italic';
+      src: url('fonts/Akzidenz Grotesk Italic.woff2') format('woff2');
+      font-style: italic;
+    }
+    @font-face {
+      font-family: 'Akzidenz Grotesk Light Bold Italic';
+      src: url('fonts/Akzidenz Grotesk Light Bold Italic.woff2') format('woff2');
+      font-style: italic;
+      font-weight: bold;
+    }
+    @font-face {
+      font-family: 'Akzidenz Grotesk Light Bold';
+      src: url('fonts/Akzidenz Grotesk Light Bold.woff2') format('woff2');
+      font-weight: bold;
+    }
+    @font-face {
+      font-family: 'Akzidenz Grotesk Light Italic';
+      src: url('fonts/Akzidenz Grotesk Light Italic.woff2') format('woff2');
+      font-style: italic;
+    }
+    @font-face {
+      font-family: 'Akzidenz Grotesk Light';
+      src: url('fonts/Akzidenz Grotesk Light.woff2') format('woff2');
+    }
+    @font-face {
+      font-family: 'Akzidenz Grotesk Roman';
+      src: url('fonts/Akzidenz Grotesk Roman.woff2') format('woff2');
+      font-weight: bold;
+    }
 
-		.loop-images img {
-			width: 100%;
-			height: auto;
-			flex-shrink: 0;
-			object-fit: cover;
-			border-radius: 8px;
-		}
-	}
-
-	/* font styling */ 
-	@font-face {
-		font-family: 'Akzidenz Grotesk Italic';
-		src: url('fonts/Akzidenz Grotesk Italic.woff2') format('woff2');
-		font-style: italic;
-	}
-	@font-face {
-		font-family: 'Akzidenz Grotesk Light Bold Italic';
-		src: url('fonts/Akzidenz Grotesk Light Bold Italic.woff2') format('woff2');
-		font-style: italic;
-		font-weight: bold;
-	}
-	@font-face {
-		font-family: 'Akzidenz Grotesk Light Bold';
-		src: url('fonts/Akzidenz Grotesk Light Bold.woff2') format('woff2');
-		font-weight: bold;
-	}
-	@font-face {
-		font-family: 'Akzidenz Grotesk Light Italic';
-		src: url('fonts/Akzidenz Grotesk Light Italic.woff2') format('woff2');
-		font-style: italic;
-	}
-	@font-face {
-		font-family: 'Akzidenz Grotesk Light';
-		src: url('fonts/Akzidenz Grotesk Light.woff2') format('woff2');
-	}
-	@font-face {
-		font-family: 'Akzidenz Grotesk Roman';
-		src: url('fonts/Akzidenz Grotesk Roman.woff2') format('woff2');
-		font-weight: bold;
-	}
-
-	.column .content-box {
-		padding-left: 0;
-		margin-left: 2px;
-		width: calc(100% + 15px);
-	}
-	</style>
+    .column .content-box {
+      padding-left: 0;
+      margin-left: 2px;
+      width: calc(100% + 15px);
+    }
+  </style>
 </head>
 
 <body>
-	<header>
-		<a href="index.html" class="header-title">Empathy in Point Clouds</a>
-	  
-		<div class="hamburger" id="hamburger" onclick="toggleMenu()">
-			<div></div>
-			<div></div>
-			<div></div>
-		</div>
-		<div class="mobile-menu" id="mobileMenu">
-			<a href="projects.html">PROJECTS</a>
-			<a href="press.html">PRESS</a>
-			<a href="about.html" class="active">ABOUT</a>
-			<a href="contact.html">CONTACT</a>
-		</div>
-	</header>
+  <header>
+    <a href="index.html" class="header-title">Empathy in Point Clouds</a>
+    <div class="hamburger" onclick="toggleMobileMenu(this)">
+      <div></div><div></div><div></div>
+    </div>
+    <nav>
+      <a href="projects.html">PROJECTS</a>
+      <a href="press.html">PRESS</a>
+      <a href="about.html">ABOUT</a>
+      <a href="contact.html" class="active">CONTACT</a>
+    </nav>
+  </header>
 
-	<main>
-		<div class="contact-grid">
-			<div class="column contact-info">
-				<h2>Contact</h2>
-				<!-- Original contact info -->
-				<p>Email the Team<br><a href="mailto:eipc.scanlab@gmail.com">eipc.scanlab@gmail.com</a></p>
-				<p>Open Monday to Friday<br>10:00 a.m. – 6:00 p.m.</p>
+  <div id="mobileMenu" class="mobile-menu">
+    <a href="projects.html">PROJECTS</a>
+    <a href="press.html">PRESS</a>
+    <a href="about.html">ABOUT</a>
+    <a href="contact.html" class="active">CONTACT</a>
+  </div>
 
-				<!-- Email form below original content -->
-				<div class="content-box form-box">
-					<form action="https://formspree.io/f/yourformid" method="POST">
-						<input type="text" name="Name" placeholder="Name" required />
-						<input type="email" name="Email" placeholder="Email" required />
-						<textarea name="Message" placeholder="Message" required></textarea>
-						<button type="submit">Send</button>
-					</form>
-				</div>
-			</div>
+  <main>
+    <div class="contact-grid">
+      <div class="column contact-info">
+        <h2>Contact</h2>
+        <!-- Original contact info -->
+        <p>Email the Team<br><a href="mailto:eipc.scanlab@gmail.com">eipc.scanlab@gmail.com</a></p>
+        <p>Open Monday to Friday<br>10:00 a.m. – 6:00 p.m.</p>
 
-			<div class="column studio-info">
-				<h2>Studio</h2>
-				<!-- Original studio info -->
-				<p>Taubman College of Architecture and Urban Planning<br>2000 Bonisteel Blvd<br>Ann Arbor, MI 48109<br>Room 3148</p>
+        <!-- Email form below original content -->
+        <div class="content-box form-box">
+          <form action="https://formspree.io/f/yourformid" method="POST">
+            <input type="text" name="Name" placeholder="Name" required />
+            <input type="email" name="Email" placeholder="Email" required />
+            <textarea name="Message" placeholder="Message" required></textarea>
+            <button type="submit">Send</button>
+          </form>
+        </div>
+      </div>
 
-				<!-- Google Map below original content -->
-				<div class="content-box map-box">
-					<iframe 
-					src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3120.592186015584!2d-83.7199244237097!3d42.289277771199586!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x883cae88f600ffd3%3A0x66530bd832ff504c!2sTaubman%20College%20of%20Architecture%20and%20Urban%20Planning!5e0!3m2!1sen!2sus!4v1753289265104!5m2!1sen!2sus" 
-					allowfullscreen="" 
-					referrerpolicy="no-referrer-when-downgrade"
-					title="Taubman College Location"
-					></iframe>
-				</div>
-			</div>
+      <div class="column studio-info">
+        <h2>Studio</h2>
+        <!-- Original studio info -->
+        <p>Taubman College of Architecture and Urban Planning<br>2000 Bonisteel Blvd<br>Ann Arbor, MI 48109<br>Room 3148</p>
 
-			<div class="column follow-info">
-				<h2>Follow Us</h2>
-				<!-- Original social links -->
-				<div class="contact-social">
-					<div class="social-link">
-						<a href="https://www.instagram.com/umich.taubmancollege/" target="_blank">Instagram ↗</a>
-						<p>@umich.taubmancollege</p>
-					</div>
-					<div class="social-link">
-						<a href="https://www.linkedin.com/school/taubman-college-of-architecture-and-urban-planning/posts/?feedView=all" target="_blank">LinkedIn ↗</a>
-						<p>Taubman College</p>
-					</div>
-				</div>
+        <!-- Google Map below original content -->
+        <div class="content-box map-box">
+          <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3120.592186015584!2d-83.7199244237097!3d42.289277771199586!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x883cae88f600ffd3%3A0x66530bd832ff504c!2sTaubman%20College%20of%20Architecture%20and%20Urban%20Planning!5e0!3m2!1sen!2sus!4v1753289265104!5m2!1sen!2sus" 
+            allowfullscreen="" 
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Taubman College Location"
+          ></iframe>
+        </div>
+      </div>
 
-				<!-- Image loop below original content -->
-				<div class="content-box">
-					<div class="image-loop">
-						<div class="loop-images">
-							<img src="images/contact-scanning.jpg" alt="Loop 1" />
-							<img src="images/contact-scanlab.jpg" alt="Loop 2" />
-							<img src="images/contact-visstudio.png" alt="Loop 3" />
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</main>
-	<script>
-		function toggleMenu() {
-			const menu = document.getElementById('mobileMenu');
-			const hamburger = document.getElementById('hamburger');
-			menu.classList.toggle('show');
-			hamburger.classList.toggle('active');
-		}
-		
-		const loopContainer = document.querySelector('.loop-images');
-		const images = document.querySelectorAll('.loop-images img');
-		let currentIndex = 0;
+      <div class="column follow-info">
+        <h2>Follow Us</h2>
+        <!-- Original social links -->
+        <div class="contact-social">
+          <div class="social-link">
+            <a href="https://www.instagram.com/umich.taubmancollege/" target="_blank">Instagram ↗</a>
+            <p>@umich.taubmancollege</p>
+          </div>
+          <div class="social-link">
+            <a href="https://www.linkedin.com/school/taubman-college-of-architecture-and-urban-planning/posts/?feedView=all" target="_blank">LinkedIn ↗</a>
+            <p>Taubman College</p>
+          </div>
+        </div>
 
-		// Clone first image and add it to the end
-		const firstClone = images[0].cloneNode(true);
-		loopContainer.appendChild(firstClone);
+        <!-- Image loop below original content -->
+        <div class="content-box">
+          <div class="image-loop">
+            <div class="loop-images">
+              <img src="images/contact-scanning.jpg" alt="Loop 1" />
+              <img src="images/contact-scanlab.jpg" alt="Loop 2" />
+              <img src="images/contact-visstudio.png" alt="Loop 3" />
+              <img src="images/contact-scanning.jpg" alt="Loop 1" />
+              <img src="images/contact-scanlab.jpg" alt="Loop 2" />
+              <img src="images/contact-visstudio.png" alt="Loop 3" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
 
-		let imageHeights = [];
-
-		function calculateImageHeights() {
-			imageHeights = [];
-			document.querySelectorAll('.loop-images img').forEach(img => {
-				imageHeights.push(img.offsetHeight);
-			});
-		}
-
-		window.addEventListener('load', () => {
-			calculateImageHeights();
-			startAutoScroll();
-		});
-
-		window.addEventListener('resize', () => {
-			calculateImageHeights();
-		});
-
-		function startAutoScroll() {
-			setInterval(() => {
-				currentIndex++;
-
-				let offset = 0;
-				for (let i = 0; i < currentIndex; i++) {
-					offset += imageHeights[i] + 20; // Add margin-bottom
-				}
-
-				loopContainer.style.transition = 'transform 1s ease-in-out';
-				loopContainer.style.transform = `translateY(-${offset}px)`;
-
-				if (currentIndex === images.length) {
-					setTimeout(() => {
-						loopContainer.style.transition = 'none';
-						loopContainer.style.transform = 'translateY(0)';
-						currentIndex = 0;
-					}, 1000); // Matches transition duration
-				}
-			}, 4000);
-		}
-	</script>
+  <script>
+    function toggleMobileMenu(button) {
+      const menu = document.getElementById('mobileMenu');
+      menu.classList.toggle('show');
+      button.classList.toggle('open');
+    }
+  </script>
 </body>
 </html>
